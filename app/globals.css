@@ -1,14 +1,35 @@
 @import "tailwindcss";
 
-/* ===== 04 Tech — foundations (from Claude Design "04 Tech.dc.html") ===== */
+/* ============================================================
+   04 Tech — tokens de color (ÚNICA FUENTE base)
+   Paleta = bandera de la provincia del Carchi + crema de fondo.
+   No introducir ningún otro color en el sitio.
+   El componente de la landing (app/page.tsx) refleja estos
+   mismos valores en su objeto `T` (necesario para los SVG inline,
+   que no admiten var() dentro de un data: URI).
+   ============================================================ */
 
 :root {
-  --paper: #f6f4ed;
-  --ink: #23312a;
-  --ink-strong: #1b2921;
-  --green: #2f6b4f;
-  --green-dark: #1e4a36;
-  --gold: #c8a24a;
+  /* fondo */
+  --crema: #e9e4d6; /* crema de fondo — aire y legibilidad */
+  --paper: #e9e4d6; /* alias usado por <body> */
+
+  /* verde (PRIMARIO / marca) — bandera Carchi */
+  --verde: #0e7a3b; /* relleno de superficies (texto claro encima) */
+  --verde-osc: #0b5e2d; /* hover de superficies verdes */
+  --verde-tx: #0a5a2c; /* verde para TEXTO/enlaces sobre crema (pasa AA) */
+  --verde-noche: #0b3a1f; /* verde muy oscuro: texto e superficies profundas */
+
+  /* amarillo (acento SECUNDARIO) — bandera Carchi */
+  --amarillo: #f4cd00;
+
+  /* rojo (ACCIÓN de alto impacto: CTA + badge destacado) — bandera Carchi */
+  --rojo: #d81e29;
+  --rojo-osc: #b4151f;
+
+  /* texto */
+  --ink: #0b3a1f; /* texto principal (verde muy oscuro) sobre crema */
+  --ink-strong: #0b3a1f;
 }
 
 * {
@@ -29,15 +50,15 @@ body {
 }
 
 a {
-  color: var(--green);
+  color: var(--verde-tx);
   text-decoration: none;
 }
 a:hover {
-  color: var(--green-dark);
+  color: var(--verde-noche);
 }
 
 ::selection {
-  background: #d8e6dc;
+  background: #cfe6d6; /* tinte verde claro */
 }
 
 @keyframes fadeUp {
@@ -51,72 +72,8 @@ a:hover {
   }
 }
 
-/* ===== hover interactions (Claude Design "style-hover" equivalents) ===== */
-
-.nav-link {
-  color: #4a5a50;
-  transition: color 0.15s ease;
-}
-.nav-link:hover {
-  color: var(--green-dark);
-}
-
-.btn {
-  transition:
-    background 0.18s ease,
-    color 0.18s ease,
-    border-color 0.18s ease;
-}
-.btn-green:hover {
-  background: var(--green-dark);
-  color: var(--paper);
-}
-.btn-gold:hover {
-  background: #d9b45c;
-  color: var(--ink-strong);
-}
-.btn-outline:hover {
-  border-color: var(--green);
-  color: var(--green-dark);
-}
-.btn-outline-fill:hover {
-  background: var(--green);
-  color: var(--paper);
-}
-.btn-outline-dark:hover {
-  border-color: var(--gold);
-  color: var(--paper);
-}
-
-.service-card {
-  transition: border-color 0.18s ease;
-}
-.service-card:hover {
-  border-color: var(--gold);
-}
-
-/* ===== responsive (source is desktop-first; collapse gracefully) ===== */
-
-@media (max-width: 860px) {
-  .two-col {
-    grid-template-columns: 1fr !important;
-  }
-  .three-col {
-    grid-template-columns: 1fr 1fr !important;
-  }
-  .nav-links {
-    gap: 16px !important;
-  }
-}
-
-@media (max-width: 640px) {
-  .three-col {
-    grid-template-columns: 1fr !important;
-  }
-  .nav-secondary {
-    display: none !important;
-  }
-  .hero-stats {
-    gap: 20px !important;
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
   }
 }

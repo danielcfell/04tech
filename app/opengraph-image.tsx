@@ -5,7 +5,7 @@ export const alt =
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-/* Paleta bloqueada: crema #E9E4D6, tinta #16302A, verde #2F6B4F, ocre #C9772F */
+/* Paleta bloqueada = bandera Carchi + crema: verde #0E7A3B, amarillo #F4CD00, rojo #D81E29, crema #E9E4D6, verde noche #0B3A1F */
 export default function OgImage() {
   return new ImageResponse(
     (
@@ -16,7 +16,7 @@ export default function OgImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#16302A",
+          background: "#0B3A1F",
           color: "#F1ECDF",
           padding: "72px 80px",
           fontFamily: "sans-serif",
@@ -28,7 +28,7 @@ export default function OgImage() {
               width: 62,
               height: 62,
               borderRadius: 16,
-              background: "#C9772F",
+              background: "#0E7A3B",
               color: "#FFF7EC",
               display: "flex",
               alignItems: "center",
@@ -55,7 +55,7 @@ export default function OgImage() {
             }}
           >
             <span>Más clientes para tu negocio, desde tu&nbsp;</span>
-            <span style={{ color: "#E3A465" }}>WhatsApp</span>
+            <span style={{ color: "#F4CD00" }}>WhatsApp</span>
           </div>
           <div style={{ fontSize: 30, color: "rgba(241,236,223,0.85)", maxWidth: 900 }}>
             Página web · sistema de facturación · bot de WhatsApp. Tulcán y todo el
@@ -66,7 +66,7 @@ export default function OgImage() {
         <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
           <div
             style={{
-              background: "#2F6B4F",
+              background: "#0E7A3B",
               color: "#F1ECDF",
               fontSize: 24,
               fontWeight: 600,

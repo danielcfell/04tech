@@ -1,14 +1,17 @@
 /* ============================================================
-   04 Tech — landing /hero
+   04 Tech — landing (home /)
    Copywriting de respuesta directa · beneficio + CTA a WhatsApp.
-   Paleta única y bloqueada:
-     crema  #E9E4D6  (fondo)
-     tinta  #16302A  (texto)
-     verde  #2F6B4F  (marca / superficies)
-     ocre   #C9772F  (CTA / precios / acento)
+   Paleta bloqueada = bandera de la provincia del Carchi + crema:
+     crema    #E9E4D6  (fondo · aire y legibilidad)
+     verde    #0E7A3B  (PRIMARIO/marca: nav, superficies, títulos, enlaces)
+     amarillo #F4CD00  (acento secundario: subrayados, íconos, etiquetas)
+     rojo     #D81E29  (SOLO acción de alto impacto: CTA WhatsApp + badge destacado)
+   Nota: el "verde noche" / tinta es un verde muy oscuro (#0B3A1F), no un color
+   nuevo — es la sombra profunda del verde de marca, usado como texto y fondos
+   oscuros. Amarillo y rojo nunca van como color de texto sobre crema (contraste).
    Tipografía: Bricolage Grotesque (títulos) + Instrument Sans (cuerpo).
-   Imágenes: mockups SVG limpios (web, bot de WhatsApp, sistema de
-   facturación) dibujados con la misma paleta — sin fotos externas.
+   Imágenes: mockups SVG limpios dibujados con la misma paleta — sin fotos externas.
+   Tokens espejo en app/globals.css (:root).
    ============================================================ */
 
 const NEGOCIO = "04 Tech";
@@ -19,30 +22,38 @@ const waLink = (msg: string) =>
 const DISPLAY = "var(--font-bricolage), 'Arial Black', system-ui, sans-serif";
 const SANS = "var(--font-instrument), system-ui, sans-serif";
 
-/* ---------- paleta bloqueada (4 roles) + derivados tonales ---------- */
+/* ---------- paleta bloqueada (bandera Carchi + crema) ---------- */
 const C = {
   crema: "#E9E4D6",
-  tinta: "#16302A",
-  verde: "#2F6B4F",
-  ocre: "#C9772F",
+  verde: "#0E7A3B",    // bandera Carchi — primario / marca
+  amarillo: "#F4CD00", // bandera Carchi — acento secundario
+  rojo: "#D81E29",     // bandera Carchi — acción / CTA
 } as const;
 
 const T = {
+  /* fondo y superficies claras (crema) */
   crema: C.crema,
   cremaOsc: "#DED8C7",     // shade de crema (superficie alterna)
   cremaClaro: "#F1ECDF",   // tint de crema (tarjetas)
-  tinta: C.tinta,
-  tintaSuave: "rgba(22,48,42,0.74)",
-  tintaTenue: "rgba(22,48,42,0.52)",
-  borde: "rgba(22,48,42,0.20)",
-  bordeSuave: "rgba(22,48,42,0.11)",
-  verde: C.verde,
-  verdeOsc: "#234F3B",     // shade de verde
-  verdeNoche: "#16302A",   // = tinta, fondo profundo
-  ocre: C.ocre,
-  ocreOsc: "#A85E1E",      // shade de ocre (hover)
-  ocreClaro: "#E3A465",    // tint de ocre (acento sobre oscuro)
-  cremaTx: "#F1ECDF",      // texto claro sobre superficies oscuras
+  /* verde muy oscuro = texto principal y superficies profundas (sombra del verde) */
+  tinta: "#0B3A1F",
+  tintaSuave: "rgba(11,58,31,0.76)",
+  tintaTenue: "rgba(11,58,31,0.54)",
+  borde: "rgba(11,58,31,0.20)",
+  bordeSuave: "rgba(11,58,31,0.11)",
+  /* verde de marca (PRIMARIO) */
+  verde: C.verde,          // relleno de superficies (texto claro encima)
+  verdeOsc: "#0B5E2D",     // hover de superficies verdes
+  verdeTx: "#0A5A2C",      // verde para TEXTO/enlaces sobre crema (pasa AA)
+  verdeNoche: "#0B3A1F",   // = tinta, secciones profundas
+  /* rojo de acción (ALTO IMPACTO: CTA + badge destacado) */
+  rojo: C.rojo,
+  rojoOsc: "#B4151F",      // hover del rojo
+  /* amarillo acento (SECUNDARIO puntual) */
+  amarillo: C.amarillo,
+  amarilloOsc: "#D8B500",
+  /* texto claro sobre superficies oscuras */
+  cremaTx: "#F1ECDF",
   humo: "rgba(241,236,223,0.82)",
 } as const;
 
@@ -55,13 +66,13 @@ const MOCK_WEB = `data:image/svg+xml,${encodeURIComponent(
       <rect x='0' y='0' width='420' height='268' rx='12' fill='${T.tinta}'/>
       <rect x='10' y='10' width='400' height='248' rx='6' fill='${T.crema}'/>
       <rect x='10' y='10' width='400' height='40' rx='6' fill='${T.verde}'/>
-      <circle cx='30' cy='30' r='5' fill='${T.crema}'/><circle cx='48' cy='30' r='5' fill='${T.ocreClaro}'/><circle cx='66' cy='30' r='5' fill='${T.cremaOsc}'/>
-      <rect x='300' y='22' width='96' height='16' rx='8' fill='${T.ocre}'/>
+      <circle cx='30' cy='30' r='5' fill='${T.crema}'/><circle cx='48' cy='30' r='5' fill='${T.amarillo}'/><circle cx='66' cy='30' r='5' fill='${T.cremaOsc}'/>
+      <rect x='300' y='22' width='96' height='16' rx='8' fill='${T.rojo}'/>
       <rect x='28' y='72' width='190' height='18' rx='4' fill='${T.tinta}'/>
       <rect x='28' y='98' width='150' height='18' rx='4' fill='${T.tinta}'/>
-      <rect x='28' y='134' width='230' height='9' rx='4' fill='rgba(22,48,42,0.45)'/>
-      <rect x='28' y='150' width='200' height='9' rx='4' fill='rgba(22,48,42,0.45)'/>
-      <rect x='28' y='178' width='120' height='30' rx='15' fill='${T.ocre}'/>
+      <rect x='28' y='134' width='230' height='9' rx='4' fill='rgba(11,58,31,0.45)'/>
+      <rect x='28' y='150' width='200' height='9' rx='4' fill='rgba(11,58,31,0.45)'/>
+      <rect x='28' y='178' width='120' height='30' rx='15' fill='${T.rojo}'/>
       <rect x='300' y='72' width='84' height='84' rx='8' fill='${T.verde}'/>
       <rect x='300' y='166' width='84' height='42' rx='8' fill='${T.cremaOsc}'/>
       <rect x='28' y='224' width='356' height='22' rx='6' fill='${T.cremaOsc}'/>
@@ -85,11 +96,11 @@ const MOCK_BOT = `data:image/svg+xml,${encodeURIComponent(
       <rect x='8' y='8' width='184' height='20' fill='${T.verde}'/>
       <circle cx='30' cy='32' r='11' fill='${T.crema}'/>
       <rect x='48' y='24' width='80' height='8' rx='4' fill='${T.crema}'/>
-      <rect x='48' y='37' width='54' height='6' rx='3' fill='${T.ocreClaro}'/>
+      <rect x='48' y='37' width='54' height='6' rx='3' fill='${T.amarillo}'/>
       <!-- burbuja cliente -->
       <rect x='60' y='70' width='118' height='34' rx='12' fill='${T.cremaOsc}'/>
       <rect x='72' y='80' width='94' height='6' rx='3' fill='${T.tinta}'/>
-      <rect x='72' y='91' width='70' height='6' rx='3' fill='rgba(22,48,42,0.5)'/>
+      <rect x='72' y='91' width='70' height='6' rx='3' fill='rgba(11,58,31,0.5)'/>
       <!-- burbuja bot -->
       <rect x='22' y='116' width='140' height='48' rx='12' fill='${T.verde}'/>
       <rect x='34' y='127' width='112' height='6' rx='3' fill='${T.crema}'/>
@@ -98,13 +109,13 @@ const MOCK_BOT = `data:image/svg+xml,${encodeURIComponent(
       <!-- burbuja bot 2 (agenda) -->
       <rect x='22' y='176' width='120' height='34' rx='12' fill='${T.verde}'/>
       <rect x='34' y='188' width='58' height='6' rx='3' fill='${T.crema}'/>
-      <rect x='100' y='184' width='30' height='18' rx='6' fill='${T.ocre}'/>
+      <rect x='100' y='184' width='30' height='18' rx='6' fill='${T.amarillo}'/>
       <!-- burbuja cliente 2 -->
       <rect x='72' y='222' width='106' height='30' rx='12' fill='${T.cremaOsc}'/>
       <rect x='84' y='232' width='82' height='6' rx='3' fill='${T.tinta}'/>
       <!-- input -->
       <rect x='22' y='320' width='120' height='24' rx='12' fill='${T.cremaOsc}'/>
-      <circle cx='162' cy='332' r='14' fill='${T.ocre}'/>
+      <circle cx='162' cy='332' r='14' fill='${T.verde}'/>
     </g>
   </svg>`
 )}`;
@@ -118,7 +129,7 @@ const MOCK_SISTEMA = `data:image/svg+xml,${encodeURIComponent(
       <!-- sidebar -->
       <rect x='0' y='0' width='96' height='306' rx='12' fill='${T.tinta}'/>
       <rect x='0' y='0' width='24' height='306' fill='${T.tinta}'/>
-      <rect x='18' y='24' width='60' height='10' rx='5' fill='${T.ocreClaro}'/>
+      <rect x='18' y='24' width='60' height='10' rx='5' fill='${T.amarillo}'/>
       <rect x='18' y='58' width='60' height='7' rx='3' fill='${T.humo}'/>
       <rect x='18' y='78' width='48' height='7' rx='3' fill='${T.humo}'/>
       <rect x='12' y='96' width='72' height='20' rx='6' fill='${T.verde}'/>
@@ -126,16 +137,16 @@ const MOCK_SISTEMA = `data:image/svg+xml,${encodeURIComponent(
       <rect x='18' y='148' width='60' height='7' rx='3' fill='${T.humo}'/>
       <!-- header -->
       <rect x='118' y='22' width='150' height='14' rx='4' fill='${T.tinta}'/>
-      <rect x='372' y='18' width='74' height='24' rx='12' fill='${T.ocre}'/>
+      <rect x='372' y='18' width='74' height='24' rx='12' fill='${T.rojo}'/>
       <!-- KPIs -->
       <rect x='118' y='58' width='100' height='56' rx='8' fill='${T.cremaOsc}'/>
-      <rect x='130' y='70' width='40' height='8' rx='4' fill='rgba(22,48,42,0.5)'/>
+      <rect x='130' y='70' width='40' height='8' rx='4' fill='rgba(11,58,31,0.5)'/>
       <rect x='130' y='86' width='60' height='16' rx='4' fill='${T.verde}'/>
       <rect x='230' y='58' width='100' height='56' rx='8' fill='${T.cremaOsc}'/>
-      <rect x='242' y='70' width='40' height='8' rx='4' fill='rgba(22,48,42,0.5)'/>
-      <rect x='242' y='86' width='60' height='16' rx='4' fill='${T.ocre}'/>
+      <rect x='242' y='70' width='40' height='8' rx='4' fill='rgba(11,58,31,0.5)'/>
+      <rect x='242' y='86' width='60' height='16' rx='4' fill='${T.amarilloOsc}'/>
       <rect x='342' y='58' width='104' height='56' rx='8' fill='${T.cremaOsc}'/>
-      <rect x='354' y='70' width='40' height='8' rx='4' fill='rgba(22,48,42,0.5)'/>
+      <rect x='354' y='70' width='40' height='8' rx='4' fill='rgba(11,58,31,0.5)'/>
       <rect x='354' y='86' width='60' height='16' rx='4' fill='${T.verde}'/>
       <!-- tabla facturas -->
       <rect x='118' y='130' width='328' height='150' rx='8' fill='${T.cremaClaro}'/>
@@ -148,9 +159,9 @@ const MOCK_SISTEMA = `data:image/svg+xml,${encodeURIComponent(
         .map(
           (i) =>
             `<g transform='translate(0 ${170 + i * 26})'>
-              <rect x='132' y='0' width='90' height='7' rx='3' fill='rgba(22,48,42,0.5)'/>
-              <rect x='232' y='0' width='70' height='7' rx='3' fill='rgba(22,48,42,0.5)'/>
-              <rect x='360' y='0' width='40' height='7' rx='3' fill='${i % 2 === 0 ? T.ocre : T.verde}'/>
+              <rect x='132' y='0' width='90' height='7' rx='3' fill='rgba(11,58,31,0.5)'/>
+              <rect x='232' y='0' width='70' height='7' rx='3' fill='rgba(11,58,31,0.5)'/>
+              <rect x='360' y='0' width='40' height='7' rx='3' fill='${i % 2 === 0 ? T.amarilloOsc : T.verde}'/>
             </g>`
         )
         .join("")}
@@ -288,50 +299,47 @@ const css = `
   html { scroll-behavior: smooth; }
 
   .fx a:focus-visible, .fx summary:focus-visible {
-    outline: 3px solid ${T.ocre};
+    outline: 3px solid ${T.verde};
     outline-offset: 3px;
     border-radius: 4px;
   }
 
   .nv-link { color: ${T.cremaTx}; position: relative; transition: color .16s ease; }
-  .nv-link::after { content:''; position:absolute; left:0; right:0; bottom:-5px; height:2px; background:${T.ocreClaro}; transform:scaleX(0); transform-origin:left; transition:transform .2s ease; }
+  .nv-link::after { content:''; position:absolute; left:0; right:0; bottom:-5px; height:2px; background:${T.amarillo}; transform:scaleX(0); transform-origin:left; transition:transform .2s ease; }
   .nv-link:hover { color:#fff; }
   .nv-link:hover::after { transform:scaleX(1); }
 
-  .btn-ocre { background:${T.ocre}; color:#FFF7EC; transition: background .18s ease, transform .15s ease, box-shadow .18s ease; }
-  .btn-ocre:hover { background:${T.ocreOsc}; transform: translateY(-2px); box-shadow: 0 16px 34px rgba(168,94,30,0.42); }
-  .btn-ocre:active { transform: translateY(0); }
-  .btn-verde { background:${T.verde}; color:${T.cremaTx}; transition: background .18s ease; }
-  .btn-verde:hover { background:${T.verdeOsc}; }
+  /* rojo = acción de alto impacto (CTA WhatsApp) */
+  .btn-rojo { background:${T.rojo}; color:#FFF7EC; transition: background .18s ease, transform .15s ease, box-shadow .18s ease; }
+  .btn-rojo:hover { background:${T.rojoOsc}; transform: translateY(-2px); box-shadow: 0 16px 34px rgba(180,21,31,0.42); }
+  .btn-rojo:active { transform: translateY(0); }
   .btn-ghost { color:${T.cremaTx}; border-bottom:1.5px solid rgba(241,236,223,0.5); transition: color .16s ease, border-color .16s ease; }
-  .btn-ghost:hover { color:${T.ocreClaro}; border-color:${T.ocreClaro}; }
-  .btn-noche { background:${T.verdeNoche}; color:${T.cremaTx}; transition: background .18s ease, transform .15s ease; }
-  .btn-noche:hover { background:#0e2019; transform: translateY(-2px); }
+  .btn-ghost:hover { color:${T.amarillo}; border-color:${T.amarillo}; }
 
   .svc { transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
-  .svc:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(22,48,42,0.14); border-color:${T.ocre}; }
+  .svc:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(11,58,31,0.14); border-color:${T.verde}; }
 
-  .tlink { color:${T.ocre}; font-weight:600; border-bottom:1.5px solid rgba(201,119,47,0.4); transition: color .15s ease, border-color .15s ease; }
-  .tlink:hover { color:${T.ocreOsc}; border-color:${T.ocreOsc}; }
+  .tlink { color:${T.verdeTx}; font-weight:600; border-bottom:1.5px solid rgba(10,90,44,0.4); transition: color .15s ease, border-color .15s ease; }
+  .tlink:hover { color:${T.tinta}; border-color:${T.tinta}; }
 
   .plan { transition: transform .2s ease, box-shadow .2s ease; }
-  .plan:hover { transform: translateY(-4px); box-shadow: 0 22px 46px rgba(22,48,42,0.16); }
+  .plan:hover { transform: translateY(-4px); box-shadow: 0 22px 46px rgba(11,58,31,0.16); }
   .plan-cta { transition: background .18s ease, color .18s ease; }
   .plan-cta-line:hover { background:${T.tinta}; color:${T.crema}; }
-  .plan-cta-solid:hover { background:${T.ocreOsc}; }
+  .plan-cta-solid:hover { background:${T.rojoOsc}; }
 
   .chip { transition: background .16s ease, border-color .16s ease, color .16s ease; }
-  .chip:hover { background:${T.ocre}; border-color:${T.ocre}; color:#FFF7EC; }
+  .chip:hover { background:${T.verde}; border-color:${T.verde}; color:#FFF7EC; }
 
   .faq summary { list-style:none; cursor:pointer; }
   .faq summary::-webkit-details-marker { display:none; }
   .faq .faq-ic { transition: transform .25s ease; }
   .faq[open] .faq-ic { transform: rotate(45deg); }
-  .faq summary:hover .faq-q { color:${T.ocre}; }
+  .faq summary:hover .faq-q { color:${T.verde}; }
   .faq-q { transition: color .15s ease; }
 
   .footlink { color: rgba(241,236,223,0.62); transition: color .15s ease; }
-  .footlink:hover { color:${T.ocreClaro}; }
+  .footlink:hover { color:${T.amarillo}; }
 
   /* ===== responsive ===== */
   @media (max-width: 760px) {
@@ -393,22 +401,22 @@ const WaIcon = () => (
 );
 
 /* ============================================================ */
-export default function HeroPage() {
+export default function Home() {
   return (
     <div className="fx" style={{ fontFamily: SANS, background: T.crema, color: T.tinta }}>
       <style dangerouslySetInnerHTML={{ __html: css }} />
 
       {/* ================= HERO ================= */}
       <header style={{ position: "relative", overflow: "hidden", background: T.verdeNoche, color: T.cremaTx }}>
-        {/* superficie de color (sin foto): verde noche con degradado sutil ocre */}
-        <div aria-hidden style={{ position: "absolute", inset: 0, background: `radial-gradient(120% 100% at 88% 12%, rgba(201,119,47,0.20) 0%, rgba(201,119,47,0) 52%)`, pointerEvents: "none" }} />
-        <div aria-hidden style={{ position: "absolute", inset: 0, background: `radial-gradient(90% 90% at 10% 100%, rgba(47,107,79,0.45) 0%, rgba(47,107,79,0) 55%)`, pointerEvents: "none" }} />
+        {/* superficie de color (sin foto): verde noche con acentos sutiles amarillo/verde */}
+        <div aria-hidden style={{ position: "absolute", inset: 0, background: `radial-gradient(120% 100% at 88% 12%, rgba(244,205,0,0.16) 0%, rgba(244,205,0,0) 52%)`, pointerEvents: "none" }} />
+        <div aria-hidden style={{ position: "absolute", inset: 0, background: `radial-gradient(90% 90% at 10% 100%, rgba(14,122,59,0.5) 0%, rgba(14,122,59,0) 55%)`, pointerEvents: "none" }} />
 
         <div style={{ position: "relative", zIndex: 2, maxWidth: 1200, margin: "0 auto", padding: "22px clamp(20px, 4vw, 44px) clamp(30px, 4vw, 44px)", display: "flex", flexDirection: "column", minHeight: "100svh" }}>
           {/* nav */}
           <nav aria-label="Principal" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 20, paddingBottom: 18, borderBottom: "1px solid rgba(241,236,223,0.20)" }}>
             <a href="#" aria-label="04 Tech — inicio" style={{ display: "inline-flex", alignItems: "center", gap: 10, color: T.cremaTx }}>
-              <span aria-hidden style={{ width: 34, height: 34, borderRadius: 9, background: T.ocre, color: "#FFF7EC", display: "grid", placeItems: "center", fontFamily: DISPLAY, fontWeight: 800, fontSize: 15, letterSpacing: "-0.03em" }}>04</span>
+              <span aria-hidden style={{ width: 34, height: 34, borderRadius: 9, background: T.verde, color: "#FFF7EC", display: "grid", placeItems: "center", fontFamily: DISPLAY, fontWeight: 800, fontSize: 15, letterSpacing: "-0.03em" }}>04</span>
               <span style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 20, letterSpacing: "-0.02em" }}>Tech</span>
             </a>
             <div className="nv-center" style={{ display: "flex", alignItems: "center", gap: 30, fontSize: 15, fontWeight: 500 }}>
@@ -419,21 +427,21 @@ export default function HeroPage() {
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
               <a href="#contacto" className="nv-link nv-contacto" style={{ fontSize: 15, fontWeight: 500 }}>Contacto</a>
-              <a href={waLink("Hola 04 Tech, quiero información sobre una página web")} className="btn-verde" style={{ padding: "10px 20px", borderRadius: 9, fontSize: 15, fontWeight: 600 }}>WhatsApp</a>
+              <a href={waLink("Hola 04 Tech, quiero información sobre una página web")} className="btn-rojo" style={{ padding: "10px 20px", borderRadius: 9, fontSize: 15, fontWeight: 600 }}>WhatsApp</a>
             </div>
           </nav>
 
           {/* contenido hero: texto + mockup web */}
           <div className="hero-inner" style={{ flex: 1, display: "grid", gridTemplateColumns: "1.05fr 0.95fr", gap: "clamp(32px, 5vw, 72px)", alignItems: "center", padding: "clamp(40px, 6vh, 80px) 0" }}>
             <div style={{ maxWidth: 640 }}>
-              <span style={{ display: "inline-flex", alignSelf: "flex-start", alignItems: "center", gap: 9, fontSize: 13.5, fontWeight: 600, color: T.cremaTx, background: "rgba(22,48,42,0.4)", border: "1px solid rgba(241,236,223,0.28)", borderRadius: 8, padding: "7px 14px", marginBottom: 24 }}>
-                <span aria-hidden style={{ width: 8, height: 8, borderRadius: "50%", background: T.ocreClaro }} />
+              <span style={{ display: "inline-flex", alignSelf: "flex-start", alignItems: "center", gap: 9, fontSize: 13.5, fontWeight: 600, color: T.cremaTx, background: "rgba(11,58,31,0.4)", border: "1px solid rgba(241,236,223,0.28)", borderRadius: 8, padding: "7px 14px", marginBottom: 24 }}>
+                <span aria-hidden style={{ width: 8, height: 8, borderRadius: "50%", background: T.amarillo }} />
                 Páginas web, sistemas y bots · Tulcán, Carchi
               </span>
 
               <h1 className="h1" style={{ margin: "0 0 22px", fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(44px, 5.8vw, 78px)", lineHeight: 1.0, letterSpacing: "-0.035em", color: T.cremaTx }}>
                 Más clientes para tu negocio,{" "}
-                <span style={{ color: T.ocreClaro }}>desde tu WhatsApp.</span>
+                <span style={{ color: T.amarillo }}>desde tu WhatsApp.</span>
               </h1>
 
               <p style={{ margin: "0 0 34px", fontSize: "clamp(17px, 1.5vw, 20px)", lineHeight: 1.6, color: "rgba(241,236,223,0.92)", maxWidth: "48ch", textWrap: "pretty" }}>
@@ -444,7 +452,7 @@ export default function HeroPage() {
               </p>
 
               <div style={{ display: "flex", alignItems: "center", gap: 22, flexWrap: "wrap" }}>
-                <a href={waLink("Hola 04 Tech, quiero más clientes para mi negocio. ¿Me ayudan?")} className="btn-ocre hero-cta" style={{ display: "inline-flex", alignItems: "center", gap: 11, padding: "16px 30px", borderRadius: 11, fontSize: 17, fontWeight: 700, boxShadow: "0 14px 30px rgba(201,119,47,0.34)" }}>
+                <a href={waLink("Hola 04 Tech, quiero más clientes para mi negocio. ¿Me ayudan?")} className="btn-rojo hero-cta" style={{ display: "inline-flex", alignItems: "center", gap: 11, padding: "16px 30px", borderRadius: 11, fontSize: 17, fontWeight: 700, boxShadow: "0 14px 30px rgba(216,30,41,0.34)" }}>
                   <WaIcon />
                   Escríbenos por WhatsApp
                 </a>
@@ -494,7 +502,7 @@ export default function HeroPage() {
                 te encuentren, te escriban y te compren — con tu página, tu sistema
                 y tu bot de WhatsApp.
               </p>
-              <a href={waLink("Hola 04 Tech, quiero que mi negocio aparezca en internet")} className="btn-ocre" style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "14px 26px", borderRadius: 11, fontSize: 16, fontWeight: 700 }}>
+              <a href={waLink("Hola 04 Tech, quiero que mi negocio aparezca en internet")} className="btn-rojo" style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "14px 26px", borderRadius: 11, fontSize: 16, fontWeight: 700 }}>
                 <WaIcon />
                 Quiero que me encuentren
               </a>
@@ -507,7 +515,7 @@ export default function HeroPage() {
                 { t: "Rápidos", d: "Te respondemos el mismo día por WhatsApp." },
               ].map((v) => (
                 <div key={v.t} style={{ background: T.cremaClaro, border: `1px solid ${T.borde}`, borderRadius: 14, padding: "18px 20px", display: "flex", gap: 16, alignItems: "flex-start" }}>
-                  <span aria-hidden style={{ width: 10, height: 10, borderRadius: 3, background: T.ocre, marginTop: 8, flexShrink: 0 }} />
+                  <span aria-hidden style={{ width: 10, height: 10, borderRadius: 3, background: T.amarillo, marginTop: 8, flexShrink: 0 }} />
                   <div>
                     <h3 style={{ margin: "0 0 3px", fontFamily: DISPLAY, fontWeight: 700, fontSize: 20, letterSpacing: "-0.02em", color: T.tinta }}>{v.t}</h3>
                     <p style={{ margin: 0, fontSize: 15, lineHeight: 1.5, color: T.tintaSuave }}>{v.d}</p>
@@ -523,7 +531,7 @@ export default function HeroPage() {
           <div style={wrap}>
             <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 24, flexWrap: "wrap", marginBottom: "clamp(32px, 4vw, 56px)" }}>
               <div style={{ maxWidth: 640 }}>
-                <Kicker bg={T.ocre} fg="#FFF7EC">Servicios</Kicker>
+                <Kicker bg={T.verde}>Servicios</Kicker>
                 <div style={{ height: 16 }} />
                 <Title>Todo lo que tu negocio necesita para vender más</Title>
               </div>
@@ -535,18 +543,18 @@ export default function HeroPage() {
             <div className="svc-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "clamp(16px, 2vw, 22px)" }}>
               {servicios.map((s) =>
                 s.ancho ? (
-                  <article key={s.title} className="svc svc-wide" style={{ gridColumn: "1 / -1", background: T.crema, border: `1.5px solid ${T.ocre}`, borderRadius: 18, padding: "clamp(24px, 2.6vw, 34px)", overflow: "hidden" }}>
+                  <article key={s.title} className="svc svc-wide" style={{ gridColumn: "1 / -1", background: T.crema, border: `1.5px solid ${T.amarillo}`, borderRadius: 18, padding: "clamp(24px, 2.6vw, 34px)", overflow: "hidden" }}>
                     <div className="svc-wide-grid" style={{ display: "grid", gridTemplateColumns: "1.05fr 0.95fr", gap: "clamp(24px, 3vw, 48px)", alignItems: "center" }}>
                       <div>
-                        <span style={{ display: "inline-block", marginBottom: 12, fontSize: 12, fontWeight: 700, letterSpacing: "0.3px", color: "#FFF7EC", background: T.ocre, padding: "4px 11px", borderRadius: 7 }}>Más nuevo</span>
+                        <span style={{ display: "inline-block", marginBottom: 12, fontSize: 12, fontWeight: 700, letterSpacing: "0.3px", color: T.tinta, background: T.amarillo, padding: "4px 11px", borderRadius: 7 }}>Más nuevo</span>
                         <h3 style={{ margin: "0 0 12px", fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(24px, 2.6vw, 31px)", letterSpacing: "-0.025em", color: T.tinta }}>{s.title}</h3>
                         <p style={{ margin: "0 0 18px", fontSize: 16, lineHeight: 1.62, color: T.tintaSuave, textWrap: "pretty" }}>{s.desc}</p>
-                        <p style={{ margin: "0 0 18px", paddingTop: 14, borderTop: `1px solid ${T.bordeSuave}`, fontSize: 13.5, fontWeight: 600, color: T.verde }}>{s.para}</p>
+                        <p style={{ margin: "0 0 18px", paddingTop: 14, borderTop: `1px solid ${T.bordeSuave}`, fontSize: 13.5, fontWeight: 600, color: T.verdeTx }}>{s.para}</p>
                         <a href={waLink("Hola 04 Tech, quiero un bot de WhatsApp con IA para mi negocio")} className="tlink">Quiero mi bot de WhatsApp →</a>
                       </div>
                       <div className="svc-wide-media">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={s.mock} alt={s.alt} loading="lazy" style={{ width: "100%", height: "auto", borderRadius: 14, border: `1px solid ${T.borde}`, boxShadow: "0 16px 34px rgba(22,48,42,0.16)" }} />
+                        <img src={s.mock} alt={s.alt} loading="lazy" style={{ width: "100%", height: "auto", borderRadius: 14, border: `1px solid ${T.borde}`, boxShadow: "0 16px 34px rgba(11,58,31,0.16)" }} />
                       </div>
                     </div>
                   </article>
@@ -556,7 +564,7 @@ export default function HeroPage() {
                     <img src={s.mock} alt={s.alt} loading="lazy" style={{ width: "100%", height: "auto", borderRadius: 12, marginBottom: 20, border: `1px solid ${T.borde}` }} />
                     <h3 style={{ margin: "0 0 10px", fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(22px, 2.3vw, 27px)", letterSpacing: "-0.025em", color: T.tinta }}>{s.title}</h3>
                     <p style={{ margin: "0 0 16px", fontSize: 16, lineHeight: 1.62, color: T.tintaSuave, textWrap: "pretty" }}>{s.desc}</p>
-                    <p style={{ margin: 0, paddingTop: 14, borderTop: `1px solid ${T.bordeSuave}`, fontSize: 13.5, fontWeight: 600, color: T.verde }}>{s.para}</p>
+                    <p style={{ margin: 0, paddingTop: 14, borderTop: `1px solid ${T.bordeSuave}`, fontSize: 13.5, fontWeight: 600, color: T.verdeTx }}>{s.para}</p>
                   </article>
                 )
               )}
@@ -573,7 +581,7 @@ export default function HeroPage() {
         <section id="proceso" style={{ padding: `${pad} 0`, background: T.verde, color: T.cremaTx }}>
           <div style={wrap}>
             <div style={{ maxWidth: 640, marginBottom: "clamp(32px, 4vw, 56px)" }}>
-              <Kicker bg={T.ocre} fg="#FFF7EC">Cómo trabajamos</Kicker>
+              <Kicker bg={T.amarillo} fg={T.tinta}>Cómo trabajamos</Kicker>
               <div style={{ height: 16 }} />
               <Title color={T.cremaTx}>Empezar es tan fácil como mandar un mensaje</Title>
               <p style={{ margin: "18px 0 0", fontSize: 17, lineHeight: 1.6, color: T.humo, textWrap: "pretty" }}>
@@ -583,8 +591,8 @@ export default function HeroPage() {
 
             <ol className="proc-grid" style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "clamp(18px, 2.4vw, 30px)" }}>
               {proceso.map((p, i) => (
-                <li key={p.title} style={{ borderTop: `2px solid ${T.ocreClaro}`, paddingTop: 18 }}>
-                  <span aria-hidden style={{ display: "inline-grid", placeItems: "center", width: 42, height: 42, borderRadius: 11, background: "rgba(241,236,223,0.14)", color: T.ocreClaro, fontFamily: DISPLAY, fontWeight: 800, fontSize: 20, marginBottom: 16 }}>{i + 1}</span>
+                <li key={p.title} style={{ borderTop: `2px solid ${T.amarillo}`, paddingTop: 18 }}>
+                  <span aria-hidden style={{ display: "inline-grid", placeItems: "center", width: 42, height: 42, borderRadius: 11, background: "rgba(241,236,223,0.14)", color: T.amarillo, fontFamily: DISPLAY, fontWeight: 800, fontSize: 20, marginBottom: 16 }}>{i + 1}</span>
                   <h3 style={{ margin: "0 0 8px", fontFamily: DISPLAY, fontWeight: 700, fontSize: 21, letterSpacing: "-0.02em", color: T.cremaTx }}>{p.title}</h3>
                   <p style={{ margin: 0, fontSize: 15, lineHeight: 1.58, color: T.humo, textWrap: "pretty" }}>{p.desc}</p>
                 </li>
@@ -592,7 +600,7 @@ export default function HeroPage() {
             </ol>
 
             <div style={{ marginTop: "clamp(36px, 4vw, 52px)" }}>
-              <a href={waLink("Hola 04 Tech, quiero empezar mi proyecto")} className="btn-ocre" style={{ display: "inline-flex", alignItems: "center", gap: 11, padding: "16px 32px", borderRadius: 11, fontSize: 17, fontWeight: 700 }}>
+              <a href={waLink("Hola 04 Tech, quiero empezar mi proyecto")} className="btn-rojo" style={{ display: "inline-flex", alignItems: "center", gap: 11, padding: "16px 32px", borderRadius: 11, fontSize: 17, fontWeight: 700 }}>
                 <WaIcon />
                 Empecemos por WhatsApp
               </a>
@@ -604,7 +612,7 @@ export default function HeroPage() {
         <section id="zonas" style={{ background: T.verdeNoche, color: T.cremaTx }}>
           <div className="zonas-grid" style={{ maxWidth: 1400, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", alignItems: "stretch" }}>
             <div style={{ padding: `${pad} clamp(20px, 4vw, 60px)`, display: "flex", flexDirection: "column", justifyContent: "center" }}>
-              <Kicker bg={T.ocre} fg="#FFF7EC">Dónde atendemos</Kicker>
+              <Kicker bg={T.amarillo} fg={T.tinta}>Dónde atendemos</Kicker>
               <div style={{ height: 18 }} />
               <Title color={T.cremaTx}>Tu página web en Tulcán, Julio Andrade y todo el Carchi</Title>
               <p style={{ margin: "20px 0 30px", fontSize: 17, lineHeight: 1.65, color: T.humo, maxWidth: "46ch", textWrap: "pretty" }}>
@@ -616,18 +624,18 @@ export default function HeroPage() {
                 {cantones.map((c) => (
                   <li key={c.canton} className="chip" style={{ display: "inline-flex", alignItems: "baseline", gap: 8, border: "1px solid rgba(241,236,223,0.28)", borderRadius: 9, padding: "9px 16px", fontSize: 15, fontWeight: 500, color: T.cremaTx, background: "rgba(241,236,223,0.05)" }}>
                     {c.canton}
-                    {c.nota && <span style={{ fontSize: 13, color: T.ocreClaro }}>· {c.nota}</span>}
+                    {c.nota && <span style={{ fontSize: 13, color: T.amarillo }}>· {c.nota}</span>}
                   </li>
                 ))}
               </ul>
-              <a href={waLink("Hola 04 Tech, mi negocio está en el Carchi y quiero una página web")} className="btn-ocre" style={{ display: "inline-flex", alignSelf: "flex-start", alignItems: "center", gap: 11, padding: "15px 30px", borderRadius: 11, fontSize: 16.5, fontWeight: 700 }}>
+              <a href={waLink("Hola 04 Tech, mi negocio está en el Carchi y quiero una página web")} className="btn-rojo" style={{ display: "inline-flex", alignSelf: "flex-start", alignItems: "center", gap: 11, padding: "15px 30px", borderRadius: 11, fontSize: 16.5, fontWeight: 700 }}>
                 <WaIcon />
                 Escríbenos desde tu ciudad
               </a>
             </div>
 
             <div className="zonas-img" style={{ position: "relative", minHeight: 480, overflow: "hidden", background: T.verde, display: "grid", placeItems: "center", padding: "clamp(28px,4vw,56px)" }}>
-              <div aria-hidden style={{ position: "absolute", inset: 0, background: `radial-gradient(80% 80% at 70% 20%, rgba(201,119,47,0.28) 0%, rgba(201,119,47,0) 55%)` }} />
+              <div aria-hidden style={{ position: "absolute", inset: 0, background: `radial-gradient(80% 80% at 70% 20%, rgba(244,205,0,0.22) 0%, rgba(244,205,0,0) 55%)` }} />
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={MOCK_BOT} alt="Captura de un chat de WhatsApp donde el bot responde a un cliente" loading="lazy" style={{ position: "relative", width: "min(78%, 360px)", height: "auto", borderRadius: 20, boxShadow: "0 26px 54px rgba(0,0,0,0.36)" }} />
             </div>
@@ -653,13 +661,13 @@ export default function HeroPage() {
                 <article key={p.nombre} className="plan" style={{ display: "flex", flexDirection: "column", background: T.cremaClaro, color: T.tinta, border: `1px solid ${T.borde}`, borderRadius: 18, padding: "clamp(24px, 2.4vw, 32px)" }}>
                   <h3 style={{ margin: "0 0 16px", fontFamily: DISPLAY, fontWeight: 800, fontSize: 22, letterSpacing: "-0.025em" }}>{p.nombre}</h3>
                   <p style={{ margin: "0 0 3px", display: "flex", alignItems: "baseline", gap: 8 }}>
-                    <span style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(38px, 3.4vw, 48px)", letterSpacing: "-0.03em", lineHeight: 1, color: T.ocre }}>{p.precio}</span>
+                    <span style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(38px, 3.4vw, 48px)", letterSpacing: "-0.03em", lineHeight: 1, color: T.verde }}>{p.precio}</span>
                     <span style={{ fontSize: 13.5, fontWeight: 600, color: T.tintaTenue }}>{p.lapso}</span>
                   </p>
                   <ul style={{ listStyle: "none", margin: "20px 0 24px", padding: 0, flex: 1 }}>
                     {p.incluye.map((item) => (
                       <li key={item} style={{ display: "flex", gap: 10, alignItems: "baseline", padding: "8px 0", fontSize: 15, lineHeight: 1.5, color: T.tintaSuave, borderTop: `1px solid ${T.bordeSuave}` }}>
-                        <span aria-hidden style={{ color: T.ocre, fontWeight: 800 }}>›</span>
+                        <span aria-hidden style={{ color: T.verde, fontWeight: 800 }}>›</span>
                         {item}
                       </li>
                     ))}
@@ -673,19 +681,19 @@ export default function HeroPage() {
 
             {/* paquete completo destacado */}
             <article className="plan paquete-grid" style={{ display: "grid", gridTemplateColumns: "1.15fr 0.85fr", gap: "clamp(24px, 3vw, 48px)", background: T.verdeNoche, color: T.cremaTx, borderRadius: 20, padding: "clamp(28px, 3vw, 44px)", alignItems: "center", position: "relative", overflow: "hidden" }}>
-              <div aria-hidden style={{ position: "absolute", inset: 0, background: `radial-gradient(70% 90% at 90% 10%, rgba(201,119,47,0.22) 0%, rgba(201,119,47,0) 55%)` }} />
+              <div aria-hidden style={{ position: "absolute", inset: 0, background: `radial-gradient(70% 90% at 90% 10%, rgba(244,205,0,0.16) 0%, rgba(244,205,0,0) 55%)` }} />
               <div style={{ position: "relative" }}>
                 <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 14 }}>
-                  <span style={{ fontSize: 12.5, fontWeight: 700, letterSpacing: "0.3px", color: T.verdeNoche, background: T.ocre, padding: "5px 12px", borderRadius: 7 }}>Más elegido</span>
-                  <span style={{ fontSize: 12.5, fontWeight: 700, letterSpacing: "0.3px", color: T.ocreClaro, background: "rgba(201,119,47,0.16)", padding: "5px 12px", borderRadius: 7, border: `1px solid rgba(201,119,47,0.4)` }}>Ahorra</span>
+                  <span style={{ fontSize: 12.5, fontWeight: 700, letterSpacing: "0.3px", color: "#FFF7EC", background: T.rojo, padding: "5px 12px", borderRadius: 7 }}>Más elegido</span>
+                  <span style={{ fontSize: 12.5, fontWeight: 700, letterSpacing: "0.3px", color: T.amarillo, background: "rgba(244,205,0,0.16)", padding: "5px 12px", borderRadius: 7, border: `1px solid rgba(244,205,0,0.45)` }}>Ahorra</span>
                 </div>
                 <h3 style={{ margin: "0 0 10px", fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(26px, 3vw, 36px)", letterSpacing: "-0.03em", color: T.cremaTx }}>{paquete.nombre}</h3>
                 <p style={{ margin: "0 0 6px", display: "flex", alignItems: "baseline", gap: 10 }}>
-                  <span style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(48px, 5vw, 68px)", letterSpacing: "-0.04em", lineHeight: 1, color: T.ocreClaro }}>{paquete.precio}</span>
+                  <span style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(48px, 5vw, 68px)", letterSpacing: "-0.04em", lineHeight: 1, color: T.amarillo }}>{paquete.precio}</span>
                   <span style={{ fontSize: 14.5, color: "rgba(241,236,223,0.7)" }}>{paquete.antes}</span>
                 </p>
                 <p style={{ margin: "0 0 18px", fontSize: 15.5, fontWeight: 600, color: T.humo }}>{paquete.lapso}</p>
-                <a href={waLink("Hola 04 Tech, quiero el PAQUETE COMPLETO por $99 (página web + sistema + bot)")} className="btn-ocre" style={{ display: "inline-flex", alignItems: "center", gap: 11, padding: "16px 32px", borderRadius: 11, fontSize: 17, fontWeight: 700, boxShadow: "0 14px 30px rgba(201,119,47,0.36)" }}>
+                <a href={waLink("Hola 04 Tech, quiero el PAQUETE COMPLETO por $99 (página web + sistema + bot)")} className="btn-rojo" style={{ display: "inline-flex", alignItems: "center", gap: 11, padding: "16px 32px", borderRadius: 11, fontSize: 17, fontWeight: 700, boxShadow: "0 14px 30px rgba(216,30,41,0.36)" }}>
                   <WaIcon />
                   Quiero el paquete de $99
                 </a>
@@ -693,7 +701,7 @@ export default function HeroPage() {
               <ul style={{ position: "relative", listStyle: "none", margin: 0, padding: 0 }}>
                 {paquete.incluye.map((item) => (
                   <li key={item} style={{ display: "flex", gap: 11, alignItems: "baseline", padding: "10px 0", fontSize: 15.5, lineHeight: 1.5, color: "rgba(241,236,223,0.92)", borderTop: "1px solid rgba(241,236,223,0.14)" }}>
-                    <span aria-hidden style={{ color: T.ocreClaro, fontWeight: 800 }}>✓</span>
+                    <span aria-hidden style={{ color: T.amarillo, fontWeight: 800 }}>✓</span>
                     {item}
                   </li>
                 ))}
@@ -719,7 +727,7 @@ export default function HeroPage() {
                 <details key={f.q} className="faq" style={{ borderBottom: `1px solid ${T.borde}` }}>
                   <summary style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 20, padding: "22px 4px" }}>
                     <span className="faq-q" style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: "clamp(18px, 2vw, 22px)", letterSpacing: "-0.02em", color: T.tinta }}>{f.q}</span>
-                    <span className="faq-ic" aria-hidden style={{ flexShrink: 0, width: 30, height: 30, borderRadius: 8, border: `1px solid ${T.borde}`, display: "grid", placeItems: "center", fontSize: 17, color: T.ocre, lineHeight: 1 }}>+</span>
+                    <span className="faq-ic" aria-hidden style={{ flexShrink: 0, width: 30, height: 30, borderRadius: 8, border: `1px solid ${T.borde}`, display: "grid", placeItems: "center", fontSize: 17, color: T.verde, lineHeight: 1 }}>+</span>
                   </summary>
                   <p style={{ margin: 0, padding: "0 44px 24px 4px", fontSize: 16, lineHeight: 1.65, color: T.tintaSuave, maxWidth: "64ch", textWrap: "pretty" }}>{f.a}</p>
                 </details>
@@ -733,8 +741,8 @@ export default function HeroPage() {
         </section>
 
         {/* ================= CTA FINAL ================= */}
-        <section id="contacto" style={{ padding: `${pad} 0`, background: T.ocre, color: "#FFF7EC", position: "relative", overflow: "hidden" }}>
-          <div aria-hidden style={{ position: "absolute", inset: 0, background: `radial-gradient(60% 100% at 50% 0%, rgba(22,48,42,0.28) 0%, rgba(22,48,42,0) 60%)` }} />
+        <section id="contacto" style={{ padding: `${pad} 0`, background: T.verdeNoche, color: "#FFF7EC", position: "relative", overflow: "hidden" }}>
+          <div aria-hidden style={{ position: "absolute", inset: 0, background: `radial-gradient(60% 100% at 50% 0%, rgba(244,205,0,0.14) 0%, rgba(244,205,0,0) 60%)` }} />
           <div style={{ ...wrap, position: "relative", textAlign: "center", maxWidth: 820 }}>
             <Title color="#FFF7EC" size="clamp(34px, 4.8vw, 58px)">Empieza a conseguir clientes esta semana</Title>
             <p style={{ margin: "20px auto 36px", fontSize: "clamp(16.5px, 1.5vw, 19px)", lineHeight: 1.64, color: "rgba(255,247,236,0.94)", maxWidth: "50ch", textWrap: "pretty" }}>
@@ -742,7 +750,7 @@ export default function HeroPage() {
               con el precio y los siguientes pasos — sin compromiso. Página web,
               sistema o bot de WhatsApp, desde $39.
             </p>
-            <a href={waLink("Hola 04 Tech, quiero conseguir más clientes. ¿Empezamos?")} className="btn-noche" style={{ display: "inline-flex", alignItems: "center", gap: 11, padding: "18px 40px", borderRadius: 12, fontSize: 17.5, fontWeight: 700, boxShadow: "0 16px 36px rgba(0,0,0,0.28)" }}>
+            <a href={waLink("Hola 04 Tech, quiero conseguir más clientes. ¿Empezamos?")} className="btn-rojo" style={{ display: "inline-flex", alignItems: "center", gap: 11, padding: "18px 40px", borderRadius: 12, fontSize: 17.5, fontWeight: 700, boxShadow: "0 16px 36px rgba(0,0,0,0.28)" }}>
               <WaIcon />
               Escríbenos por WhatsApp ahora
             </a>
@@ -758,7 +766,7 @@ export default function HeroPage() {
         <div className="foot-grid" style={{ ...wrap, padding: "clamp(48px, 6vw, 72px) clamp(20px, 4vw, 44px) 26px", display: "grid", gridTemplateColumns: "1.4fr 1fr 1fr", gap: "clamp(28px, 4vw, 60px)" }}>
           <div>
             <div style={{ display: "inline-flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
-              <span aria-hidden style={{ width: 34, height: 34, borderRadius: 9, background: T.ocre, color: "#FFF7EC", display: "grid", placeItems: "center", fontFamily: DISPLAY, fontWeight: 800, fontSize: 15, letterSpacing: "-0.03em" }}>04</span>
+              <span aria-hidden style={{ width: 34, height: 34, borderRadius: 9, background: T.verde, color: "#FFF7EC", display: "grid", placeItems: "center", fontFamily: DISPLAY, fontWeight: 800, fontSize: 15, letterSpacing: "-0.03em" }}>04</span>
               <span style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 20, letterSpacing: "-0.02em", color: T.cremaTx }}>Tech</span>
             </div>
             <p style={{ margin: 0, fontSize: 15, lineHeight: 1.6, maxWidth: "36ch", textWrap: "pretty" }}>
