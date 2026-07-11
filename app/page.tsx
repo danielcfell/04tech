@@ -3,9 +3,9 @@
    Copywriting de respuesta directa · beneficio + CTA a WhatsApp.
    Paleta bloqueada = bandera de la provincia del Carchi + crema:
      crema    #E9E4D6  (fondo · aire y legibilidad)
-     verde    #0E7A3B  (PRIMARIO/marca: nav, superficies, títulos, enlaces)
-     amarillo #F4CD00  (acento secundario: subrayados, íconos, etiquetas)
-     rojo     #D81E29  (SOLO acción de alto impacto: CTA WhatsApp + badge destacado)
+     verde    #0E7A3B  (PRIMARIO/marca + CTA sobre crema; nav, superficies, títulos, enlaces)
+     amarillo #F4CD00  (acento secundario + CTA sobre fondos verdes; subrayados, íconos, etiquetas)
+     rojo     #D81E29  (SOLO el badge "Más elegido" del paquete destacado — uso mínimo)
    Nota: el "verde noche" / tinta es un verde muy oscuro (#0B3A1F), no un color
    nuevo — es la sombra profunda del verde de marca, usado como texto y fondos
    oscuros. Amarillo y rojo nunca van como color de texto sobre crema (contraste).
@@ -67,12 +67,12 @@ const MOCK_WEB = `data:image/svg+xml,${encodeURIComponent(
       <rect x='10' y='10' width='400' height='248' rx='6' fill='${T.crema}'/>
       <rect x='10' y='10' width='400' height='40' rx='6' fill='${T.verde}'/>
       <circle cx='30' cy='30' r='5' fill='${T.crema}'/><circle cx='48' cy='30' r='5' fill='${T.amarillo}'/><circle cx='66' cy='30' r='5' fill='${T.cremaOsc}'/>
-      <rect x='300' y='22' width='96' height='16' rx='8' fill='${T.rojo}'/>
+      <rect x='300' y='22' width='96' height='16' rx='8' fill='${T.verde}'/>
       <rect x='28' y='72' width='190' height='18' rx='4' fill='${T.tinta}'/>
       <rect x='28' y='98' width='150' height='18' rx='4' fill='${T.tinta}'/>
       <rect x='28' y='134' width='230' height='9' rx='4' fill='rgba(11,58,31,0.45)'/>
       <rect x='28' y='150' width='200' height='9' rx='4' fill='rgba(11,58,31,0.45)'/>
-      <rect x='28' y='178' width='120' height='30' rx='15' fill='${T.rojo}'/>
+      <rect x='28' y='178' width='120' height='30' rx='15' fill='${T.verde}'/>
       <rect x='300' y='72' width='84' height='84' rx='8' fill='${T.verde}'/>
       <rect x='300' y='166' width='84' height='42' rx='8' fill='${T.cremaOsc}'/>
       <rect x='28' y='224' width='356' height='22' rx='6' fill='${T.cremaOsc}'/>
@@ -137,7 +137,7 @@ const MOCK_SISTEMA = `data:image/svg+xml,${encodeURIComponent(
       <rect x='18' y='148' width='60' height='7' rx='3' fill='${T.humo}'/>
       <!-- header -->
       <rect x='118' y='22' width='150' height='14' rx='4' fill='${T.tinta}'/>
-      <rect x='372' y='18' width='74' height='24' rx='12' fill='${T.rojo}'/>
+      <rect x='372' y='18' width='74' height='24' rx='12' fill='${T.amarilloOsc}'/>
       <!-- KPIs -->
       <rect x='118' y='58' width='100' height='56' rx='8' fill='${T.cremaOsc}'/>
       <rect x='130' y='70' width='40' height='8' rx='4' fill='rgba(11,58,31,0.5)'/>
@@ -309,10 +309,14 @@ const css = `
   .nv-link:hover { color:#fff; }
   .nv-link:hover::after { transform:scaleX(1); }
 
-  /* rojo = acción de alto impacto (CTA WhatsApp) */
-  .btn-rojo { background:${T.rojo}; color:#FFF7EC; transition: background .18s ease, transform .15s ease, box-shadow .18s ease; }
-  .btn-rojo:hover { background:${T.rojoOsc}; transform: translateY(-2px); box-shadow: 0 16px 34px rgba(180,21,31,0.42); }
-  .btn-rojo:active { transform: translateY(0); }
+  /* CTA WhatsApp — verde sobre fondos claros (crema) */
+  .btn-verde { background:${T.verde}; color:#FFF7EC; transition: background .18s ease, transform .15s ease, box-shadow .18s ease; }
+  .btn-verde:hover { background:${T.verdeOsc}; transform: translateY(-2px); box-shadow: 0 16px 34px rgba(11,58,31,0.30); }
+  .btn-verde:active { transform: translateY(0); }
+  /* CTA WhatsApp — amarillo sobre fondos verdes/oscuros (máx. contraste, texto verde oscuro) */
+  .btn-amar { background:${T.amarillo}; color:${T.tinta}; transition: background .18s ease, transform .15s ease, box-shadow .18s ease; }
+  .btn-amar:hover { background:${T.amarilloOsc}; transform: translateY(-2px); box-shadow: 0 16px 34px rgba(0,0,0,0.30); }
+  .btn-amar:active { transform: translateY(0); }
   .btn-ghost { color:${T.cremaTx}; border-bottom:1.5px solid rgba(241,236,223,0.5); transition: color .16s ease, border-color .16s ease; }
   .btn-ghost:hover { color:${T.amarillo}; border-color:${T.amarillo}; }
 
@@ -326,7 +330,7 @@ const css = `
   .plan:hover { transform: translateY(-4px); box-shadow: 0 22px 46px rgba(11,58,31,0.16); }
   .plan-cta { transition: background .18s ease, color .18s ease; }
   .plan-cta-line:hover { background:${T.tinta}; color:${T.crema}; }
-  .plan-cta-solid:hover { background:${T.rojoOsc}; }
+  .plan-cta-solid:hover { background:${T.verdeOsc}; }
 
   .chip { transition: background .16s ease, border-color .16s ease, color .16s ease; }
   .chip:hover { background:${T.verde}; border-color:${T.verde}; color:#FFF7EC; }
@@ -427,7 +431,7 @@ export default function Home() {
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
               <a href="#contacto" className="nv-link nv-contacto" style={{ fontSize: 15, fontWeight: 500 }}>Contacto</a>
-              <a href={waLink("Hola 04 Tech, quiero información sobre una página web")} className="btn-rojo" style={{ padding: "10px 20px", borderRadius: 9, fontSize: 15, fontWeight: 600 }}>WhatsApp</a>
+              <a href={waLink("Hola 04 Tech, quiero información sobre una página web")} className="btn-amar" style={{ padding: "10px 20px", borderRadius: 9, fontSize: 15, fontWeight: 600 }}>WhatsApp</a>
             </div>
           </nav>
 
@@ -452,7 +456,7 @@ export default function Home() {
               </p>
 
               <div style={{ display: "flex", alignItems: "center", gap: 22, flexWrap: "wrap" }}>
-                <a href={waLink("Hola 04 Tech, quiero más clientes para mi negocio. ¿Me ayudan?")} className="btn-rojo hero-cta" style={{ display: "inline-flex", alignItems: "center", gap: 11, padding: "16px 30px", borderRadius: 11, fontSize: 17, fontWeight: 700, boxShadow: "0 14px 30px rgba(216,30,41,0.34)" }}>
+                <a href={waLink("Hola 04 Tech, quiero más clientes para mi negocio. ¿Me ayudan?")} className="btn-amar hero-cta" style={{ display: "inline-flex", alignItems: "center", gap: 11, padding: "16px 30px", borderRadius: 11, fontSize: 17, fontWeight: 700, boxShadow: "0 14px 30px rgba(0,0,0,0.30)" }}>
                   <WaIcon />
                   Escríbenos por WhatsApp
                 </a>
@@ -502,7 +506,7 @@ export default function Home() {
                 te encuentren, te escriban y te compren — con tu página, tu sistema
                 y tu bot de WhatsApp.
               </p>
-              <a href={waLink("Hola 04 Tech, quiero que mi negocio aparezca en internet")} className="btn-rojo" style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "14px 26px", borderRadius: 11, fontSize: 16, fontWeight: 700 }}>
+              <a href={waLink("Hola 04 Tech, quiero que mi negocio aparezca en internet")} className="btn-verde" style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "14px 26px", borderRadius: 11, fontSize: 16, fontWeight: 700 }}>
                 <WaIcon />
                 Quiero que me encuentren
               </a>
@@ -600,7 +604,7 @@ export default function Home() {
             </ol>
 
             <div style={{ marginTop: "clamp(36px, 4vw, 52px)" }}>
-              <a href={waLink("Hola 04 Tech, quiero empezar mi proyecto")} className="btn-rojo" style={{ display: "inline-flex", alignItems: "center", gap: 11, padding: "16px 32px", borderRadius: 11, fontSize: 17, fontWeight: 700 }}>
+              <a href={waLink("Hola 04 Tech, quiero empezar mi proyecto")} className="btn-amar" style={{ display: "inline-flex", alignItems: "center", gap: 11, padding: "16px 32px", borderRadius: 11, fontSize: 17, fontWeight: 700 }}>
                 <WaIcon />
                 Empecemos por WhatsApp
               </a>
@@ -628,7 +632,7 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
-              <a href={waLink("Hola 04 Tech, mi negocio está en el Carchi y quiero una página web")} className="btn-rojo" style={{ display: "inline-flex", alignSelf: "flex-start", alignItems: "center", gap: 11, padding: "15px 30px", borderRadius: 11, fontSize: 16.5, fontWeight: 700 }}>
+              <a href={waLink("Hola 04 Tech, mi negocio está en el Carchi y quiero una página web")} className="btn-amar" style={{ display: "inline-flex", alignSelf: "flex-start", alignItems: "center", gap: 11, padding: "15px 30px", borderRadius: 11, fontSize: 16.5, fontWeight: 700 }}>
                 <WaIcon />
                 Escríbenos desde tu ciudad
               </a>
@@ -693,7 +697,7 @@ export default function Home() {
                   <span style={{ fontSize: 14.5, color: "rgba(241,236,223,0.7)" }}>{paquete.antes}</span>
                 </p>
                 <p style={{ margin: "0 0 18px", fontSize: 15.5, fontWeight: 600, color: T.humo }}>{paquete.lapso}</p>
-                <a href={waLink("Hola 04 Tech, quiero el PAQUETE COMPLETO por $99 (página web + sistema + bot)")} className="btn-rojo" style={{ display: "inline-flex", alignItems: "center", gap: 11, padding: "16px 32px", borderRadius: 11, fontSize: 17, fontWeight: 700, boxShadow: "0 14px 30px rgba(216,30,41,0.36)" }}>
+                <a href={waLink("Hola 04 Tech, quiero el PAQUETE COMPLETO por $99 (página web + sistema + bot)")} className="btn-amar" style={{ display: "inline-flex", alignItems: "center", gap: 11, padding: "16px 32px", borderRadius: 11, fontSize: 17, fontWeight: 700, boxShadow: "0 14px 30px rgba(0,0,0,0.32)" }}>
                   <WaIcon />
                   Quiero el paquete de $99
                 </a>
@@ -750,7 +754,7 @@ export default function Home() {
               con el precio y los siguientes pasos — sin compromiso. Página web,
               sistema o bot de WhatsApp, desde $39.
             </p>
-            <a href={waLink("Hola 04 Tech, quiero conseguir más clientes. ¿Empezamos?")} className="btn-rojo" style={{ display: "inline-flex", alignItems: "center", gap: 11, padding: "18px 40px", borderRadius: 12, fontSize: 17.5, fontWeight: 700, boxShadow: "0 16px 36px rgba(0,0,0,0.28)" }}>
+            <a href={waLink("Hola 04 Tech, quiero conseguir más clientes. ¿Empezamos?")} className="btn-amar" style={{ display: "inline-flex", alignItems: "center", gap: 11, padding: "18px 40px", borderRadius: 12, fontSize: 17.5, fontWeight: 700, boxShadow: "0 16px 36px rgba(0,0,0,0.28)" }}>
               <WaIcon />
               Escríbenos por WhatsApp ahora
             </a>
