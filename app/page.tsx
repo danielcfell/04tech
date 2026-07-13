@@ -595,7 +595,7 @@ export default function Home() {
         </section>
 
         {/* ================= PROCESO ================= */}
-        <section id="proceso" style={{ padding: `${pad} 0`, background: T.verde, color: T.cremaTx }}>
+        <section id="proceso" style={{ padding: `${pad} 0`, background: T.verdeNoche, color: T.cremaTx }}>
           <div style={wrap}>
             <div style={{ maxWidth: 640, marginBottom: "clamp(32px, 4vw, 56px)" }}>
               <Kicker bg={T.amarillo} fg={T.tinta}>Cómo trabajamos</Kicker>
@@ -626,39 +626,41 @@ export default function Home() {
         </section>
 
         {/* ================= ZONAS ================= */}
-        <section id="zonas" style={{ background: T.verdeNoche, color: T.cremaTx }}>
-          <div className="zonas-grid" style={{ maxWidth: 1400, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", alignItems: "stretch" }}>
-            <div style={{ padding: `${pad} clamp(20px, 4vw, 60px)`, display: "flex", flexDirection: "column", justifyContent: "center" }}>
-              <Kicker bg={T.amarillo} fg={T.tinta}>Dónde atendemos</Kicker>
+        <section id="zonas" style={{ padding: `${pad} 0`, background: T.crema }}>
+          <div className="zonas-grid" style={{ ...wrap, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(36px, 6vw, 80px)", alignItems: "center" }}>
+            <div>
+              <Kicker bg={T.verde}>Dónde atendemos</Kicker>
               <div style={{ height: 18 }} />
-              <Title color={T.cremaTx}>Tu página web en Tulcán, Julio Andrade y todo el Carchi</Title>
-              <p style={{ margin: "20px 0 30px", fontSize: 17, lineHeight: 1.65, color: T.humo, maxWidth: "46ch", textWrap: "pretty" }}>
+              <Title>Tu página web en Tulcán, Julio Andrade y todo el Carchi</Title>
+              <p style={{ margin: "20px 0 30px", fontSize: 17, lineHeight: 1.65, color: T.tintaSuave, maxWidth: "46ch", textWrap: "pretty" }}>
                 Trabajamos con negocios de toda la provincia. Estés donde estés,
                 coordinamos por WhatsApp o videollamada — y cuando el proyecto lo
                 amerita, vamos hasta donde estás.
               </p>
               <ul style={{ listStyle: "none", margin: "0 0 30px", padding: 0, display: "flex", flexWrap: "wrap", gap: 10 }}>
                 {cantones.map((c) => (
-                  <li key={c.canton} className="chip" style={{ display: "inline-flex", alignItems: "baseline", gap: 8, border: "1px solid rgba(241,236,223,0.28)", borderRadius: 9, padding: "9px 16px", fontSize: 15, fontWeight: 500, color: T.cremaTx, background: "rgba(241,236,223,0.05)" }}>
+                  <li key={c.canton} className="chip" style={{ display: "inline-flex", alignItems: "baseline", gap: 8, border: `1px solid ${T.borde}`, borderRadius: 9, padding: "9px 16px", fontSize: 15, fontWeight: 500, color: T.tinta, background: T.cremaClaro }}>
                     {c.canton}
-                    {c.nota && <span style={{ fontSize: 13, color: T.amarillo }}>· {c.nota}</span>}
+                    {c.nota && <span style={{ fontSize: 13, color: T.verdeTx, fontWeight: 600 }}>· {c.nota}</span>}
                   </li>
                 ))}
               </ul>
-              <a href={waLink("Hola 04 Tech, mi negocio está en el Carchi y quiero una página web")} className="btn-amar" style={{ display: "inline-flex", alignSelf: "flex-start", alignItems: "center", gap: 11, padding: "15px 30px", borderRadius: 11, fontSize: 16.5, fontWeight: 700 }}>
+              <a href={waLink("Hola 04 Tech, mi negocio está en el Carchi y quiero una página web")} className="btn-verde" style={{ display: "inline-flex", alignSelf: "flex-start", alignItems: "center", gap: 11, padding: "15px 30px", borderRadius: 11, fontSize: 16.5, fontWeight: 700 }}>
                 <WaIcon />
                 Escríbenos desde tu ciudad
               </a>
             </div>
 
-            <div className="zonas-img" style={{ position: "relative", minHeight: 480, background: T.verde, display: "grid", placeItems: "center", padding: "clamp(28px,4vw,56px)" }}>
-              <ZonasMap />
+            <div className="zonas-img" style={{ display: "grid", placeItems: "center" }}>
+              <div style={{ width: "100%", maxWidth: 460, background: T.verdeNoche, borderRadius: 22, padding: "clamp(20px, 3vw, 34px)", boxShadow: "0 24px 50px rgba(11,58,31,0.18)", border: `1px solid ${T.borde}` }}>
+                <ZonasMap />
+              </div>
             </div>
           </div>
         </section>
 
         {/* ================= PRECIOS ================= */}
-        <section id="precios" style={{ padding: `${pad} 0`, background: T.crema }}>
+        <section id="precios" style={{ padding: `${pad} 0`, background: T.cremaOsc, borderTop: `1px solid ${T.bordeSuave}` }}>
           <div style={wrap}>
             <div style={{ maxWidth: 680, marginBottom: "clamp(32px, 4vw, 52px)" }}>
               <Kicker bg={T.verde}>Precios</Kicker>
@@ -730,7 +732,7 @@ export default function Home() {
         </section>
 
         {/* ================= FAQ ================= */}
-        <section id="faq" style={{ padding: `${pad} 0`, background: T.cremaOsc, borderTop: `1px solid ${T.bordeSuave}` }}>
+        <section id="faq" style={{ padding: `${pad} 0`, background: T.crema, borderTop: `1px solid ${T.bordeSuave}` }}>
           <div style={{ ...wrap, maxWidth: 880 }}>
             <div style={{ marginBottom: "clamp(28px, 4vw, 48px)" }}>
               <Kicker bg={T.verde}>Preguntas frecuentes</Kicker>
