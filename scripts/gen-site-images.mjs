@@ -23,23 +23,24 @@ if (!token || token.length < 20) {
 const redact = (s) => (token ? String(s).replaceAll(token, "«REDACTED»") : String(s));
 
 const STYLE =
-  "sleek futuristic technology concept, holographic user interface, glowing neon blue and cyan light accents, glass and chrome surfaces, dark premium studio background, cinematic volumetric lighting, ultra-detailed 3D render, professional, clean, sense of innovation and trust, no text, no letters, no words, no watermark";
+  "bright clean professional commercial photograph, soft natural daylight, realistic, warm and trustworthy, minimal uncluttered composition, light neutral background, sharp focus, shallow depth of field, high quality";
+
+/* Prompt negativo (schnell lo ignora en gran medida; el peso real está en el
+   prompt positivo, por eso describe fotografía limpia y con luz natural). */
+const NEGATIVE =
+  "neon, glow, cyberpunk, science fiction, 3d render, holographic, futuristic, blue neon, pink neon, dark background, floating interface, circuit lines, network globe, abstract technology, lens flare, oversaturated, text, letters, watermark, deformed hands, extra fingers";
 
 const IMAGES = [
-  { name: "hero", w: 1216, h: 768, subject:
-    "A glowing holographic smartphone floating above a reflective surface, surrounded by rising business growth bar charts and chat message bubbles made of light, conveying sales growth and success" },
   { name: "pagina-web", w: 1024, h: 768, subject:
-    "A modern business website interface displayed on a floating futuristic laptop and smartphone, with layered translucent holographic UI panels and cards" },
+    "A modern small-business website shown on a laptop screen on a tidy bright wooden desk, a notebook and a cup of coffee beside it, seen slightly from above" },
   { name: "tienda", w: 1024, h: 768, subject:
-    "A futuristic online store concept, holographic products and a glowing shopping cart icon floating in space, digital e-commerce storefront panels of light" },
+    "A tidy attractive product display in a bright welcoming small shop, with a tablet on the counter showing an online store page" },
   { name: "sistema", w: 1024, h: 768, subject:
-    "A futuristic analytics and invoicing dashboard as floating holographic panels with line charts, bar graphs, tables and streaming data numbers made of blue light" },
+    "A laptop on a clean bright desk showing a simple business dashboard with sales charts and an invoice, tidy office, daylight from a window" },
   { name: "soporte", w: 1024, h: 768, subject:
-    "A futuristic customer support concept, a glowing headset and a floating holographic chat and help interface, human and technology connected" },
+    "A friendly professional support agent wearing a headset, smiling warmly, in a bright modern office with soft natural light" },
   { name: "bot", w: 1024, h: 768, subject:
-    "A futuristic AI assistant, a glowing translucent neural-network sphere and robotic core connected to floating chat message bubbles, artificial intelligence automation" },
-  { name: "zonas", w: 1024, h: 768, subject:
-    "A futuristic glowing digital map of a mountainous andean region seen from above, with connected network nodes and thin light lines linking towns, connectivity concept" },
+    "A smiling person using a smartphone to chat on a messaging app, sitting in a bright cozy cafe with natural light" },
 ];
 
 const ENDPOINTS = [
@@ -56,7 +57,7 @@ async function generate(item, attempt = 1) {
   const prompt = `${item.subject}. ${STYLE}`;
   const body = JSON.stringify({
     inputs: prompt,
-    parameters: { width: item.w, height: item.h },
+    parameters: { width: item.w, height: item.h, negative_prompt: NEGATIVE },
   });
   for (const url of ENDPOINTS) {
     const res = await fetch(url, {
