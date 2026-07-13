@@ -57,117 +57,9 @@ const T = {
   humo: "rgba(241,236,223,0.82)",
 } as const;
 
-/* ---------- mockups SVG (resultado + tecnología), misma paleta ---------- */
-/* 1 · Página web en laptop */
-const MOCK_WEB = `data:image/svg+xml,${encodeURIComponent(
-  `<svg xmlns='http://www.w3.org/2000/svg' width='560' height='420' viewBox='0 0 560 420'>
-    <rect width='560' height='420' fill='${T.verde}'/>
-    <g transform='translate(70 46)'>
-      <rect x='0' y='0' width='420' height='268' rx='12' fill='${T.tinta}'/>
-      <rect x='10' y='10' width='400' height='248' rx='6' fill='${T.crema}'/>
-      <rect x='10' y='10' width='400' height='40' rx='6' fill='${T.verde}'/>
-      <circle cx='30' cy='30' r='5' fill='${T.crema}'/><circle cx='48' cy='30' r='5' fill='${T.amarillo}'/><circle cx='66' cy='30' r='5' fill='${T.cremaOsc}'/>
-      <rect x='300' y='22' width='96' height='16' rx='8' fill='${T.verde}'/>
-      <rect x='28' y='72' width='190' height='18' rx='4' fill='${T.tinta}'/>
-      <rect x='28' y='98' width='150' height='18' rx='4' fill='${T.tinta}'/>
-      <rect x='28' y='134' width='230' height='9' rx='4' fill='rgba(11,58,31,0.45)'/>
-      <rect x='28' y='150' width='200' height='9' rx='4' fill='rgba(11,58,31,0.45)'/>
-      <rect x='28' y='178' width='120' height='30' rx='15' fill='${T.verde}'/>
-      <rect x='300' y='72' width='84' height='84' rx='8' fill='${T.verde}'/>
-      <rect x='300' y='166' width='84' height='42' rx='8' fill='${T.cremaOsc}'/>
-      <rect x='28' y='224' width='356' height='22' rx='6' fill='${T.cremaOsc}'/>
-      <!-- base laptop -->
-      <path d='M-30 268 h480 l24 30 h-528 z' fill='${T.tinta}'/>
-      <rect x='-30' y='298' width='480' height='6' rx='3' transform='translate(0 0)' fill='${T.verdeOsc}'/>
-    </g>
-    <rect x='196' y='344' width='168' height='10' rx='5' fill='${T.verdeOsc}'/>
-  </svg>`
-)}`;
-
-/* 2 · Chat de WhatsApp con el bot respondiendo */
-const MOCK_BOT = `data:image/svg+xml,${encodeURIComponent(
-  `<svg xmlns='http://www.w3.org/2000/svg' width='560' height='420' viewBox='0 0 560 420'>
-    <rect width='560' height='420' fill='${T.cremaOsc}'/>
-    <g transform='translate(180 26)'>
-      <rect x='0' y='0' width='200' height='368' rx='26' fill='${T.tinta}'/>
-      <rect x='8' y='8' width='184' height='352' rx='20' fill='${T.crema}'/>
-      <!-- barra chat -->
-      <rect x='8' y='8' width='184' height='44' rx='0' fill='${T.verde}'/>
-      <rect x='8' y='8' width='184' height='20' fill='${T.verde}'/>
-      <circle cx='30' cy='32' r='11' fill='${T.crema}'/>
-      <rect x='48' y='24' width='80' height='8' rx='4' fill='${T.crema}'/>
-      <rect x='48' y='37' width='54' height='6' rx='3' fill='${T.amarillo}'/>
-      <!-- burbuja cliente -->
-      <rect x='60' y='70' width='118' height='34' rx='12' fill='${T.cremaOsc}'/>
-      <rect x='72' y='80' width='94' height='6' rx='3' fill='${T.tinta}'/>
-      <rect x='72' y='91' width='70' height='6' rx='3' fill='rgba(11,58,31,0.5)'/>
-      <!-- burbuja bot -->
-      <rect x='22' y='116' width='140' height='48' rx='12' fill='${T.verde}'/>
-      <rect x='34' y='127' width='112' height='6' rx='3' fill='${T.crema}'/>
-      <rect x='34' y='138' width='96' height='6' rx='3' fill='${T.humo}'/>
-      <rect x='34' y='149' width='76' height='6' rx='3' fill='${T.humo}'/>
-      <!-- burbuja bot 2 (agenda) -->
-      <rect x='22' y='176' width='120' height='34' rx='12' fill='${T.verde}'/>
-      <rect x='34' y='188' width='58' height='6' rx='3' fill='${T.crema}'/>
-      <rect x='100' y='184' width='30' height='18' rx='6' fill='${T.amarillo}'/>
-      <!-- burbuja cliente 2 -->
-      <rect x='72' y='222' width='106' height='30' rx='12' fill='${T.cremaOsc}'/>
-      <rect x='84' y='232' width='82' height='6' rx='3' fill='${T.tinta}'/>
-      <!-- input -->
-      <rect x='22' y='320' width='120' height='24' rx='12' fill='${T.cremaOsc}'/>
-      <circle cx='162' cy='332' r='14' fill='${T.verde}'/>
-    </g>
-  </svg>`
-)}`;
-
-/* 3 · Sistema de facturación (pantalla) */
-const MOCK_SISTEMA = `data:image/svg+xml,${encodeURIComponent(
-  `<svg xmlns='http://www.w3.org/2000/svg' width='560' height='420' viewBox='0 0 560 420'>
-    <rect width='560' height='420' fill='${T.verdeOsc}'/>
-    <g transform='translate(46 40)'>
-      <rect x='0' y='0' width='468' height='306' rx='12' fill='${T.crema}'/>
-      <!-- sidebar -->
-      <rect x='0' y='0' width='96' height='306' rx='12' fill='${T.tinta}'/>
-      <rect x='0' y='0' width='24' height='306' fill='${T.tinta}'/>
-      <rect x='18' y='24' width='60' height='10' rx='5' fill='${T.amarillo}'/>
-      <rect x='18' y='58' width='60' height='7' rx='3' fill='${T.humo}'/>
-      <rect x='18' y='78' width='48' height='7' rx='3' fill='${T.humo}'/>
-      <rect x='12' y='96' width='72' height='20' rx='6' fill='${T.verde}'/>
-      <rect x='18' y='128' width='54' height='7' rx='3' fill='${T.humo}'/>
-      <rect x='18' y='148' width='60' height='7' rx='3' fill='${T.humo}'/>
-      <!-- header -->
-      <rect x='118' y='22' width='150' height='14' rx='4' fill='${T.tinta}'/>
-      <rect x='372' y='18' width='74' height='24' rx='12' fill='${T.amarilloOsc}'/>
-      <!-- KPIs -->
-      <rect x='118' y='58' width='100' height='56' rx='8' fill='${T.cremaOsc}'/>
-      <rect x='130' y='70' width='40' height='8' rx='4' fill='rgba(11,58,31,0.5)'/>
-      <rect x='130' y='86' width='60' height='16' rx='4' fill='${T.verde}'/>
-      <rect x='230' y='58' width='100' height='56' rx='8' fill='${T.cremaOsc}'/>
-      <rect x='242' y='70' width='40' height='8' rx='4' fill='rgba(11,58,31,0.5)'/>
-      <rect x='242' y='86' width='60' height='16' rx='4' fill='${T.amarilloOsc}'/>
-      <rect x='342' y='58' width='104' height='56' rx='8' fill='${T.cremaOsc}'/>
-      <rect x='354' y='70' width='40' height='8' rx='4' fill='rgba(11,58,31,0.5)'/>
-      <rect x='354' y='86' width='60' height='16' rx='4' fill='${T.verde}'/>
-      <!-- tabla facturas -->
-      <rect x='118' y='130' width='328' height='150' rx='8' fill='${T.cremaClaro}'/>
-      <rect x='118' y='130' width='328' height='28' rx='8' fill='${T.verde}'/>
-      <rect x='118' y='144' width='328' height='14' fill='${T.verde}'/>
-      <rect x='132' y='140' width='60' height='8' rx='4' fill='${T.crema}'/>
-      <rect x='232' y='140' width='60' height='8' rx='4' fill='${T.crema}'/>
-      <rect x='360' y='140' width='50' height='8' rx='4' fill='${T.crema}'/>
-      ${[0, 1, 2, 3]
-        .map(
-          (i) =>
-            `<g transform='translate(0 ${170 + i * 26})'>
-              <rect x='132' y='0' width='90' height='7' rx='3' fill='rgba(11,58,31,0.5)'/>
-              <rect x='232' y='0' width='70' height='7' rx='3' fill='rgba(11,58,31,0.5)'/>
-              <rect x='360' y='0' width='40' height='7' rx='3' fill='${i % 2 === 0 ? T.amarilloOsc : T.verde}'/>
-            </g>`
-        )
-        .join("")}
-    </g>
-  </svg>`
-)}`;
+/* ---------- imágenes del sitio ----------
+   Generadas con la Inference API de Hugging Face (FLUX.1-schnell) y
+   optimizadas a WebP en public/img/. Ver scripts/gen-site-images.mjs. */
 
 /* ---------- datos ---------- */
 const servicios: {
@@ -182,36 +74,36 @@ const servicios: {
     title: "Página web en Tulcán",
     desc: "Sal en Google cuando alguien busca lo que vendes y deja que te escriban al WhatsApp con un clic. Tu página lista para atraer clientes, no para adornar.",
     para: "Restaurantes · hoteles · profesionales · comercios",
-    mock: MOCK_WEB,
-    alt: "Mockup de una página web de negocio en la pantalla de una laptop",
+    mock: "/img/pagina-web.webp",
+    alt: "Ilustración futurista de una página web mostrada en una laptop y un celular",
   },
   {
     title: "Tienda en línea",
     desc: "Muestra tus productos con fotos y precios, y recibe los pedidos directo en tu WhatsApp. Empieza a vender por internet aunque nunca lo hayas hecho.",
     para: "Boutiques · ferreterías · productores · artesanos",
-    mock: MOCK_WEB,
-    alt: "Mockup de tienda en línea en la pantalla de una laptop",
+    mock: "/img/tienda.webp",
+    alt: "Ilustración futurista de una tienda en línea con carrito de compras holográfico",
   },
   {
     title: "Sistema de facturación y más",
     desc: "Factura, controla tu inventario, agenda citas, registra tus ventas y saca reportes desde un solo lugar. Un sistema a la medida de tu negocio pequeño, no una camisa de fuerza.",
     para: "Facturación · inventario · citas · control de ventas · reportes",
-    mock: MOCK_SISTEMA,
-    alt: "Pantalla de un sistema de facturación con tabla de facturas y reportes",
+    mock: "/img/sistema.webp",
+    alt: "Ilustración futurista de un sistema de facturación con paneles de datos y reportes",
   },
   {
     title: "Soporte que no te abandona",
     desc: "Después de lanzar seguimos contigo: cambios, contenido nuevo, tu ficha de Google Maps al día. Un mensaje de WhatsApp y lo resolvemos.",
     para: "Para todo cliente de 04 Tech, mes a mes",
-    mock: MOCK_SISTEMA,
-    alt: "Pantalla de panel de soporte del sistema",
+    mock: "/img/soporte.webp",
+    alt: "Ilustración futurista de soporte al cliente con interfaz de ayuda",
   },
   {
     title: "Bot de WhatsApp y automatización con IA",
     desc: "Un asistente que contesta a tus clientes por WhatsApp a toda hora, agenda citas y responde las preguntas de siempre por ti. Automatiza lo repetitivo para que no pierdas ventas ni tiempo, ni cuando duermes.",
     para: "Responde WhatsApp solo · agenda citas · confirma pedidos · atención 24/7",
-    mock: MOCK_BOT,
-    alt: "Captura de un chat de WhatsApp donde el bot responde a un cliente y agenda una cita",
+    mock: "/img/bot.webp",
+    alt: "Ilustración futurista de un bot de WhatsApp con inteligencia artificial respondiendo mensajes",
     ancho: true,
   },
 ];
@@ -495,7 +387,7 @@ export default function Home() {
             {/* mockup de página web */}
             <div className="hero-media" style={{ position: "relative" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={MOCK_WEB} alt="Mockup de una página web de negocio en la pantalla de una laptop" fetchPriority="high" style={{ width: "100%", height: "auto", borderRadius: 18, boxShadow: "0 30px 60px rgba(0,0,0,0.34)", border: "1px solid rgba(241,236,223,0.14)" }} />
+              <img src="/img/hero.webp" alt="Ilustración futurista de tecnología para hacer crecer un negocio: smartphone y gráficos de ventas" fetchPriority="high" style={{ width: "100%", height: "auto", borderRadius: 18, boxShadow: "0 30px 60px rgba(0,0,0,0.34)", border: "1px solid rgba(241,236,223,0.14)" }} />
             </div>
           </div>
 
@@ -665,7 +557,7 @@ export default function Home() {
             <div className="zonas-img" style={{ position: "relative", minHeight: 480, overflow: "hidden", background: T.verde, display: "grid", placeItems: "center", padding: "clamp(28px,4vw,56px)" }}>
               <div aria-hidden style={{ position: "absolute", inset: 0, background: `radial-gradient(80% 80% at 70% 20%, rgba(244,205,0,0.22) 0%, rgba(244,205,0,0) 55%)` }} />
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={MOCK_BOT} alt="Captura de un chat de WhatsApp donde el bot responde a un cliente" loading="lazy" style={{ position: "relative", width: "min(78%, 360px)", height: "auto", borderRadius: 20, boxShadow: "0 26px 54px rgba(0,0,0,0.36)" }} />
+              <img src="/img/zonas.webp" alt="Mapa digital futurista que conecta los cantones del Carchi" loading="lazy" style={{ position: "relative", width: "min(78%, 360px)", height: "auto", borderRadius: 20, boxShadow: "0 26px 54px rgba(0,0,0,0.36)" }} />
             </div>
           </div>
         </section>
