@@ -23,23 +23,20 @@ export default function OgImage() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
-          <div
-            style={{
-              width: 62,
-              height: 62,
-              borderRadius: 16,
-              background: "#0E7A3B",
-              color: "#FFF7EC",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: 30,
-              fontWeight: 800,
-            }}
-          >
-            04
+          {/* isotipo Nodo 04 — el 0 es el anillo, el nodo marca las 4:00 */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            width={64}
+            height={64}
+            alt=""
+            src={`data:image/svg+xml,${encodeURIComponent(
+              "<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'><circle cx='32' cy='32' r='23' fill='none' stroke='#F1ECDF' stroke-width='10'/><circle cx='51.9' cy='43.5' r='8' fill='#F4CD00' stroke='#0B3A1F' stroke-width='4'/></svg>"
+            )}`}
+          />
+          <div style={{ display: "flex", fontSize: 40, letterSpacing: "-1.5px" }}>
+            <span style={{ fontWeight: 800 }}>04</span>
+            <span style={{ fontWeight: 500 }}>tech</span>
           </div>
-          <div style={{ fontSize: 34, fontWeight: 700 }}>Tech</div>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>

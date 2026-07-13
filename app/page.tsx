@@ -404,6 +404,31 @@ const WaIcon = () => (
   <span aria-hidden style={{ width: 22, height: 22, borderRadius: "50%", background: "rgba(255,247,236,0.24)", display: "grid", placeItems: "center", fontSize: 13 }}>✆</span>
 );
 
+/* Logo 04 Tech — isotipo "Nodo 04": el 0 es un anillo y el nodo marca las 4:00.
+   Importado del proyecto de diseño de claude.ai (artboard 2a "Nodo 04 · sistema
+   completo"), redibujado con los tokens de la paleta del sitio. `nodeStroke` es
+   el halo del nodo: debe igualar el color de fondo donde se coloca el logo. */
+function Logo({
+  size = 34,
+  ring = T.cremaTx,
+  node = T.amarillo,
+  nodeStroke = T.verdeNoche,
+  word = T.cremaTx,
+}: { size?: number; ring?: string; node?: string; nodeStroke?: string; word?: string }) {
+  return (
+    <span style={{ display: "inline-flex", alignItems: "center", gap: size * 0.34 }}>
+      <svg width={size} height={size} viewBox="0 0 64 64" aria-hidden style={{ flexShrink: 0, display: "block" }}>
+        <circle cx="32" cy="32" r="23" fill="none" stroke={ring} strokeWidth="10" />
+        <circle cx="51.9" cy="43.5" r="8" fill={node} stroke={nodeStroke} strokeWidth="4" />
+      </svg>
+      <span style={{ fontFamily: DISPLAY, fontSize: size * 0.6, letterSpacing: "-0.03em", color: word, lineHeight: 1 }}>
+        <span style={{ fontWeight: 800 }}>04</span>
+        <span style={{ fontWeight: 500, opacity: 0.92 }}>tech</span>
+      </span>
+    </span>
+  );
+}
+
 /* ============================================================ */
 export default function Home() {
   return (
@@ -419,9 +444,8 @@ export default function Home() {
         <div style={{ position: "relative", zIndex: 2, maxWidth: 1200, margin: "0 auto", padding: "22px clamp(20px, 4vw, 44px) clamp(30px, 4vw, 44px)", display: "flex", flexDirection: "column", minHeight: "100svh" }}>
           {/* nav */}
           <nav aria-label="Principal" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 20, paddingBottom: 18, borderBottom: "1px solid rgba(241,236,223,0.20)" }}>
-            <a href="#" aria-label="04 Tech — inicio" style={{ display: "inline-flex", alignItems: "center", gap: 10, color: T.cremaTx }}>
-              <span aria-hidden style={{ width: 34, height: 34, borderRadius: 9, background: T.verde, color: "#FFF7EC", display: "grid", placeItems: "center", fontFamily: DISPLAY, fontWeight: 800, fontSize: 15, letterSpacing: "-0.03em" }}>04</span>
-              <span style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 20, letterSpacing: "-0.02em" }}>Tech</span>
+            <a href="#" aria-label="04 Tech — inicio" style={{ display: "inline-flex", alignItems: "center", color: T.cremaTx }}>
+              <Logo size={34} />
             </a>
             <div className="nv-center" style={{ display: "flex", alignItems: "center", gap: 30, fontSize: 15, fontWeight: 500 }}>
               <a href="#servicios" className="nv-link">Servicios</a>
@@ -769,9 +793,8 @@ export default function Home() {
       <footer style={{ background: T.verdeNoche, color: "rgba(241,236,223,0.62)" }}>
         <div className="foot-grid" style={{ ...wrap, padding: "clamp(48px, 6vw, 72px) clamp(20px, 4vw, 44px) 26px", display: "grid", gridTemplateColumns: "1.4fr 1fr 1fr", gap: "clamp(28px, 4vw, 60px)" }}>
           <div>
-            <div style={{ display: "inline-flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
-              <span aria-hidden style={{ width: 34, height: 34, borderRadius: 9, background: T.verde, color: "#FFF7EC", display: "grid", placeItems: "center", fontFamily: DISPLAY, fontWeight: 800, fontSize: 15, letterSpacing: "-0.03em" }}>04</span>
-              <span style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 20, letterSpacing: "-0.02em", color: T.cremaTx }}>Tech</span>
+            <div style={{ display: "inline-flex", alignItems: "center", marginBottom: 14 }}>
+              <Logo size={34} />
             </div>
             <p style={{ margin: 0, fontSize: 15, lineHeight: 1.6, maxWidth: "36ch", textWrap: "pretty" }}>
               Páginas web, sistemas de facturación y bots de WhatsApp para los
