@@ -7,9 +7,12 @@
    "bot de WhatsApp", "sistema de facturación Carchi".
    ============================================================ */
 
-/* .trim() en toda env var usada en URLs (bug conocido de \n en Vercel) */
+/* .trim() en toda env var usada en URLs (bug conocido de \n en Vercel)
+   TODO: al comprar el dominio (p.ej. 04tech.ec), conectarlo en Vercel →
+   Settings → Domains y cambiar este fallback (o setear NEXT_PUBLIC_SITE_URL).
+   El canonical DEBE apuntar al dominio que realmente sirve el sitio. */
 export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://04tech.ec"
+  process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://04tech.vercel.app"
 ).replace(/\/+$/, "");
 
 export const BUSINESS = {
@@ -19,7 +22,8 @@ export const BUSINESS = {
   /* NAP — idéntico en footer, schema y metadata */
   phoneE164: "+593958948115",
   whatsapp: "593958948115",
-  email: "hola@04tech.ec",
+  /* TODO: cambiar a hola@04tech.ec cuando exista el dominio y su correo */
+  email: "danielcfell98@gmail.com",
   street: "Tulcán",
   city: "Tulcán",
   region: "Carchi",
