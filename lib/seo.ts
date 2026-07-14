@@ -214,10 +214,10 @@ export const PROYECTOS: Proyecto[] = [
     titulo: "Psicología Para Ti",
     cliente: "Centro de psicología",
     lugar: "Quito",
-    tipo: "Landing page",
+    tipo: "Página web",
     fecha: "Octubre 2025",
     fechaIso: "2025-10",
-    desc: "Página de aterrizaje orientada a captar pacientes: presenta los servicios del centro y guía al visitante a agendar una cita.",
+    desc: "Página web orientada a captar pacientes: presenta los servicios del centro y guía al visitante a agendar una cita.",
     tags: ["Captación de clientes", "Diseño a medida", "Móvil"],
   },
   {
