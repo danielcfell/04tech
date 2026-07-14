@@ -3,17 +3,20 @@ import { Bricolage_Grotesque, Instrument_Sans } from "next/font/google";
 import "./globals.css";
 import { SITE_URL, BUSINESS } from "@/lib/seo";
 
+/* Pesos = solo los que se usan de verdad:
+   Bricolage (títulos/logo): 500 logo, 700 subtítulos, 800 títulos.
+   Instrument (cuerpo): 400 texto, 500/600 énfasis, 700 badges. */
 const bricolage = Bricolage_Grotesque({
   variable: "--font-bricolage",
   subsets: ["latin"],
-  weight: ["400", "600", "700", "800"],
+  weight: ["500", "700", "800"],
   display: "swap",
 });
 
 const instrument = Instrument_Sans({
   variable: "--font-instrument",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 

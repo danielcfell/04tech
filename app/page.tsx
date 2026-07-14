@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import JsonLd from "./JsonLd";
+import MobileNav from "./MobileNav";
 import { waLink, BUSINESS, SERVICIOS, PLANES, PAQUETE, FAQS, AREAS } from "@/lib/seo";
 /* ============================================================
    04 Tech — landing (home /)
@@ -157,7 +158,7 @@ const css = `
   .faq summary:hover .faq-q { color:${T.verde}; }
   .faq-q { transition: color .15s ease; }
 
-  .footlink { color: rgba(241,236,223,0.62); transition: color .15s ease; }
+  .footlink { color: rgba(241,236,223,0.8); transition: color .15s ease; }
   .footlink:hover { color:${T.amarillo}; }
 
   /* ===== responsive ===== */
@@ -335,6 +336,7 @@ export default function Home() {
             <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
               <a href="#contacto" className="nv-link nv-contacto" style={{ fontSize: 15, fontWeight: 500 }}>Contacto</a>
               <a target="_blank" rel="noopener" href={waLink("Hola 04 Tech, quiero información sobre una página web")} className="btn-amar" style={{ padding: "10px 20px", borderRadius: 9, fontSize: 15, fontWeight: 600 }}>WhatsApp</a>
+              <MobileNav />
             </div>
           </nav>
 
@@ -347,7 +349,7 @@ export default function Home() {
               </span>
 
               <h1 className="h1" style={{ margin: "0 0 22px", fontFamily: DISPLAY, fontWeight: 800, fontSize: "clamp(44px, 5.8vw, 78px)", lineHeight: 1.0, letterSpacing: "-0.035em", color: T.cremaTx }}>
-                Más clientes para tu negocio,{" "}
+                Más clientes para tu negocio en Tulcán,{" "}
                 <span style={{ color: T.amarillo }}>desde tu WhatsApp.</span>
               </h1>
 
@@ -355,7 +357,7 @@ export default function Home() {
                 Creamos tu <strong style={{ color: T.cremaTx, fontWeight: 600 }}>página web en Tulcán</strong>, tu{" "}
                 <strong style={{ color: T.cremaTx, fontWeight: 600 }}>sistema de facturación</strong> y tu{" "}
                 <strong style={{ color: T.cremaTx, fontWeight: 600 }}>bot de WhatsApp</strong> para que te encuentren y te
-                escriban en todo el Carchi. Desde $39.
+                escriban en todo el Carchi. Desde $39, pago único.
               </p>
 
               <div style={{ display: "flex", alignItems: "center", gap: 22, flexWrap: "wrap" }}>
@@ -371,17 +373,22 @@ export default function Home() {
               </p>
             </div>
 
-            {/* foto documental del hero (next/image, con priority) */}
+            {/* foto documental del hero. <picture>: en móvil (<760px) la imagen
+               está oculta por CSS, así que servimos un GIF de 1px para no
+               descargar los ~56KB; en desktop carga eager con prioridad alta. */}
             <div className="hero-media" style={{ position: "relative" }}>
-              <Image
-                src="/img/hero.webp"
-                alt="dueño de negocio en Tulcán usando WhatsApp en su celular"
-                width={1100}
-                height={733}
-                priority
-                sizes="(max-width: 1200px) 45vw, 480px"
-                style={{ width: "100%", height: "auto", borderRadius: 18, boxShadow: "0 30px 60px rgba(11,58,31,0.28)", border: "1px solid rgba(241,236,223,0.14)" }}
-              />
+              <picture>
+                <source media="(max-width: 760px)" srcSet="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" />
+                <img
+                  src="/img/hero.webp"
+                  alt="dueño de negocio en Tulcán usando WhatsApp en su celular"
+                  width={1100}
+                  height={733}
+                  fetchPriority="high"
+                  decoding="async"
+                  style={{ width: "100%", height: "auto", borderRadius: 18, boxShadow: "0 30px 60px rgba(11,58,31,0.28)", border: "1px solid rgba(241,236,223,0.14)" }}
+                />
+              </picture>
             </div>
           </div>
 
@@ -563,8 +570,9 @@ export default function Home() {
               <div style={{ height: 16 }} />
               <Title>Precios claros. Sin letra pequeña.</Title>
               <p style={{ margin: "18px 0 0", fontSize: 17, lineHeight: 1.6, color: T.tintaSuave, textWrap: "pretty" }}>
-                Cada servicio cuesta $39. ¿Quieres los tres? El paquete completo es
-                $99 — te ahorras plata y tu negocio queda listo de una vez.
+                Cada servicio cuesta $39, pago único — pagas una vez y es tuyo.
+                ¿Quieres los tres? El paquete completo es $99 y tu negocio queda
+                listo de una vez.
               </p>
             </div>
 
@@ -675,7 +683,7 @@ export default function Home() {
       </main>
 
       {/* ================= FOOTER ================= */}
-      <footer style={{ background: T.verdeNoche, color: "rgba(241,236,223,0.62)" }}>
+      <footer style={{ background: T.verdeNoche, color: "rgba(241,236,223,0.78)" }}>
         <div className="foot-grid" style={{ ...wrap, padding: "clamp(48px, 6vw, 72px) clamp(20px, 4vw, 44px) 26px", display: "grid", gridTemplateColumns: "1.4fr 1fr 1fr", gap: "clamp(28px, 4vw, 60px)" }}>
           <div>
             <div style={{ display: "inline-flex", alignItems: "center", marginBottom: 14 }}>
@@ -687,7 +695,7 @@ export default function Home() {
             </p>
           </div>
           <nav aria-label="Footer" style={{ display: "flex", flexDirection: "column", gap: 12, fontSize: 15 }}>
-            <p style={{ margin: "0 0 4px", fontSize: 12.5, fontWeight: 700, letterSpacing: "0.4px", color: "rgba(241,236,223,0.42)" }}>Secciones</p>
+            <p style={{ margin: "0 0 4px", fontSize: 12.5, fontWeight: 700, letterSpacing: "0.4px", color: "rgba(241,236,223,0.6)" }}>Secciones</p>
             <a href="#servicios" className="footlink">Servicios</a>
             <a href="#proceso" className="footlink">Cómo trabajamos</a>
             <a href="#zonas" className="footlink">Zonas</a>
@@ -695,7 +703,7 @@ export default function Home() {
             <a href="#faq" className="footlink">Preguntas frecuentes</a>
           </nav>
           <div style={{ display: "flex", flexDirection: "column", gap: 12, fontSize: 15 }}>
-            <p style={{ margin: "0 0 4px", fontSize: 12.5, fontWeight: 700, letterSpacing: "0.4px", color: "rgba(241,236,223,0.42)" }}>Contacto</p>
+            <p style={{ margin: "0 0 4px", fontSize: 12.5, fontWeight: 700, letterSpacing: "0.4px", color: "rgba(241,236,223,0.6)" }}>Contacto</p>
             <a target="_blank" rel="noopener" href={waLink("Hola 04 Tech, quiero información")} className="footlink">WhatsApp</a>
             {/* NAP visible — debe coincidir con el JSON-LD (lib/seo.ts) */}
             <a href={`tel:${BUSINESS.phoneE164}`} className="footlink">+593 95 894 8115</a>
@@ -704,7 +712,7 @@ export default function Home() {
           </div>
         </div>
         <div style={wrap}>
-          <div style={{ borderTop: "1px solid rgba(241,236,223,0.12)", padding: "18px 0 24px", display: "flex", flexWrap: "wrap", gap: 12, justifyContent: "space-between", fontSize: 12.5, color: "rgba(241,236,223,0.44)" }}>
+          <div style={{ borderTop: "1px solid rgba(241,236,223,0.12)", padding: "18px 0 24px", display: "flex", flexWrap: "wrap", gap: 12, justifyContent: "space-between", fontSize: 12.5, color: "rgba(241,236,223,0.64)" }}>
             <p style={{ margin: 0 }}>© {new Date().getFullYear()} {BUSINESS.name} · Tulcán, Carchi</p>
             <p style={{ margin: 0 }}>Diseño web · sistemas · bots con IA en el Carchi</p>
           </div>

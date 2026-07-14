@@ -127,7 +127,7 @@ export const PLANES = [
     id: "plan-web",
     nombre: "Página web",
     price: PRICE_SINGLE,
-    lapso: "por servicio",
+    lapso: "pago único",
     incluye: [
       "Página web lista para Google y WhatsApp",
       "Diseño a tu medida, se ve bien en el celular",
@@ -140,7 +140,7 @@ export const PLANES = [
     id: "plan-sistema",
     nombre: "Sistema a la medida",
     price: PRICE_SINGLE,
-    lapso: "por servicio",
+    lapso: "pago único",
     incluye: [
       "Sistema de facturación para tu negocio",
       "Inventario, citas, control de ventas y reportes",
@@ -153,7 +153,7 @@ export const PLANES = [
     id: "plan-bot",
     nombre: "Bot y automatización",
     price: PRICE_SINGLE,
-    lapso: "por servicio",
+    lapso: "pago único",
     incluye: [
       "Bot de WhatsApp que atiende 24/7",
       "Agenda citas y confirma pedidos solo",
@@ -184,7 +184,7 @@ export const PAQUETE = {
 export const FAQS = [
   {
     q: "¿Cuánto cuesta una página web en Tulcán?",
-    a: "Una página web en Tulcán cuesta $39. Un sistema de facturación a la medida también cuesta $39, y lo mismo el bot de WhatsApp con IA. Si quieres los tres juntos, el paquete completo es $99, más barato que por separado.",
+    a: "Una página web en Tulcán cuesta $39, en un solo pago. Un sistema de facturación a la medida también cuesta $39, y lo mismo el bot de WhatsApp con IA. Si quieres los tres juntos, el paquete completo es $99, más barato que por separado.",
   },
   {
     q: "¿Atienden en Julio Andrade y el resto del Carchi?",
